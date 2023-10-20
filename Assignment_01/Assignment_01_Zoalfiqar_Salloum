@@ -31,7 +31,7 @@ def factorials():
     print(result, str1)
   
 
-#factorials()
+factorials()
 
 ##################################################################################
 # 2. Write a function that takes an integer as an input from the user and finds all its divisors
@@ -62,7 +62,7 @@ def devisors():
   else:
     print(lst)
 
-#devisors()
+devisors()
 
 ##################################################################################
 # Write a function called reverseString that takes a string as input from the user and returns
@@ -79,7 +79,7 @@ def reverseString():
     reversed_str = i + reversed_str
   print(reversed_str) 
 
-#reverseString()
+reverseString()
 
 #################################################################################
 # 4. Write a function that takes a list of integers as input from the user and returns a new list
@@ -132,7 +132,7 @@ def evenNumbers():
   
   print(even_numbers_list)
 
-#evenNumbers()
+evenNumbers()
 
 ######################################################################################
 # 5. Write a function that takes a string as input and checks whether it meets the requirements
@@ -166,7 +166,7 @@ def strongPassword():
   else:
     print("Weak password")
 
-#strongPassword()
+strongPassword()
 
 #   while (lower_item == False and upper_item == True and special_item == True and digit_item == True):
 #     str = input("Weak password!, Please enter a password with at least on lowercase: ")
