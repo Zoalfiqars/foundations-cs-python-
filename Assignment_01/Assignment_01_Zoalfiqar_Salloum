@@ -65,7 +65,7 @@ def devisors():
 devisors()
 
 ##################################################################################
-# Write a function called reverseString that takes a string as input from the user and returns
+# 3. Write a function called reverseString that takes a string as input from the user and returns
 # the string reversed. You must use a loop to implement the reversal, and you cannot use any
 # built-in string or list reversal functions.
 # Example 1: Input: “Hello World”, Output: “dlroW olleH”
