@@ -168,47 +168,6 @@ def strongPassword():
 
 strongPassword()
 
-#   while (lower_item == False and upper_item == True and special_item == True and digit_item == True):
-#     str = input("Weak password!, Please enter a password with at least on lowercase: ")
-
-#   while (lower_item == True and upper_item == False and special_item == True and digit_item == True):
-#     str = input("Weak password!, Please enter a password with at least on uppercase: ")
-
-#   while (lower_item == True and upper_item == True and special_item == False and digit_item == True):
-#     str = input("Weak password!, Please enter a password with one of these characters \n# ? ! $: ")
-
-#   while (lower_item == True and upper_item == True and special_item == True and digit_item == False):
-#     str = input("Weak password!, Please enter a password with at least one number: ")
-# #######
-#   while (lower_item == False and upper_item == False and special_item == True and digit_item == True):
-#     str = input("Weak password!, Please enter a password with at least one lowercase and one uppercase: ")
-
-#   while (lower_item == True and upper_item == False and special_item == False and digit_item == True):
-#     str = input("Weak password!, \nPlease enter a password with at least one uppercase and a special characters: ")
-
-#   while (lower_item == True and upper_item == True and special_item == False and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one special character and a number: ")
-
-#   while (lower_item == False and upper_item == True and special_item == False and digit_item == True):
-#     str = input("Weak password!, \nPlease enter a password with at least one lowercase \nand a special characters: ")
-
-#   while (lower_item == False and upper_item == True and special_item == True and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one lowercase and a number: ")
-# #######
-#   while (lower_item == True and upper_item == False and special_item == False and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one uppercase, \na special characters and a number: ")
-
-#   while (lower_item == False and upper_item == True and special_item == False and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one uppercase, \nspecial character and a number: ")
-
-#   while (lower_item == False and upper_item == False and special_item == True and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one lowercase, \nuppercase and a number: ")
-
-#   # while (lower_item == False and upper_item == False and special_item == False and digit_item == True):
-#   #   str = input("Weak password!, \nPlease enter a password with at least one lowercase, \nuppercase and a special character: ")
-
-#   while (lower_item == False and upper_item == False and special_item == False and digit_item == False):
-#     str = input("Weak password!, \nPlease enter a password with at least one lowercase, \none upper case, one special character and a number: ")
 ##################################################################################################################
 
 # 6. BONUS QUESTION (For FSW Peeps): Write a function that takes a string as input and
