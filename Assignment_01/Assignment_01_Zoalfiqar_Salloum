@@ -231,43 +231,111 @@ def strongPassword():
 # Note: an octet is each number for example 192 or 255. An octet can be 0 for example
 # 0.192.1.1 is valid but it cannot start with 0 for example 01.192.1.1 is invalid.
 
-def checkIP():
-  str = input("Enter your IP to check if it is a valid one:\n")
+###################################
+#First try didn`t work correctly! #
+###################################
+# def checkIP():
+#   str = input("Enter your IP to check if it is a valid one:\n")
   
-  while ( 15 < len(str) or len(str) < 7):
-    print("01 error.Invalid IPv4 address.")
-    checkIP()
-    #str = input("Your IP should look something like this.\n192.168.1.1\nType a new one: ")
+#   while ( 15 < len(str) or len(str) < 7):
+#     print("01 error.Invalid IPv4 address.")
+#     checkIP()
+#     #str = input("Your IP should look something like this.\n192.168.1.1\nType a new one: ")
 
-  lst = str.split(".")
+#   lst = str.split(".")
 
-  for i in lst:
-    if i.isnumeric() != True:
-      print("02 error.Invalid IP address. Your IP can be only numbers. ")
-      checkIP()
+#   for i in lst:
+#     if i.isnumeric() != True:
+#       print("02 error.Invalid IP address. Your IP can be only numbers. ")
+#       checkIP()
 
-  continue_ = False
-  if (len(lst) == 4):
-    continue_ = True
-  else:
-    print("03 error.Invalid IP address. Your IP should be separeted by(.) ")
-    checkIP()
+#   continue_ = False
+#   if (len(lst) == 4):
+#     continue_ = True
+#   else:
+#     print("03 error.Invalid IP address. Your IP should be separeted by(.) ")
+#     checkIP()
 
-  if (continue_ == True):   
-    wrong1 = any( 0 > int(i) or int(i) > 255 for i in lst)
-    if wrong1 == True:
-      print("Invalid IP address.(octet should be between 0 and 255)")
-      checkIP()
+#   if (continue_ == True):   
+#     wrong1 = any( 0 > int(i) or int(i) > 255 for i in lst)
+#     if wrong1 == True:
+#       print("Invalid IP address.(octet should be between 0 and 255)")
+#       checkIP()
 
-    for i in lst:
-      if (len(i) > 0) and (int(i[0]) == 0):     
-        print("Invalid IP address.(leading zero in octet)")
-        checkIP()
+#     for i in lst:
+#       if (len(i) > 0) and (int(i[0]) == 0):     
+#         print("Invalid IP address.(leading zero in octet)")
+#         checkIP()
         
-  print("Your IP is valid.")
+#   print("Your IP is valid.")
+# checkIP()
+
+###################################
+#Second try didn`t work correctly`#
+###################################
+# def checkIP():
+#   str = input("Enter your IP to check if it is a valid one:\n")
+#   vaild = False
+
+#   if ( 15 >= len(str) and len(str) >= 7):
+#     lst = str.split(".")
+#     for i in lst:
+#     if i.isnumeric() != True:
+#       print("02 error.Invalid IP address. Your IP can be only numbers. ")
+     
+
+#   continue_ = False
+#   if (len(lst) == 4):
+#     continue_ = True
+#   else:
+#     print("03 error.Invalid IP address. Your IP should be separeted by(.) ")
+    
+
+#   if (continue_ == True):   
+#     wrong1 = any( 0 > int(i) or int(i) > 255 for i in lst)
+#     if wrong1 == True:
+#       print("Invalid IP address.(octet should be between 0 and 255)")
+      
+
+#     for i in lst:
+#       if (len(i) > 0) and (int(i[0]) == 0):     
+#         print("Invalid IP address.(leading zero in octet)")
+       
+
+#   print("Your IP is valid.")
+# checkIP()
+
+#############
+# Third try #
+#############
+
+def checkIP():
+    while True:
+        user_input = input("Enter your IP to check if it is a valid one:\n")
+        lst = user_input.split(".")
+
+        if len(lst) != 4:
+            print("Error: Invalid IP address. Your IP should have 4 octets separated by periods.")
+            continue
+
+        is_valid = True
+
+        for i in lst:
+            if not i.isnumeric() or not (0 <= int(i) <= 255):
+                is_valid = False
+                print("Error: Invalid IP address. Octets should be numbers between 0 and 255.")
+                break
+
+            if len(i) > 1 and i[0] == '0':
+                is_valid = False
+                print("Error: Invalid IP address. Leading zeros are not allowed in octets.")
+                break
+
+        if is_valid:
+            print("Your IP is valid.")
+            break
+
 checkIP()
-
-
 
 
 
