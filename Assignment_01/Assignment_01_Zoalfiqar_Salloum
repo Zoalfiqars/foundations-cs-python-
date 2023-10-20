@@ -1,0 +1,295 @@
+# 1. Write a function that takes an integer from the user and calculates its factorial, (The
+# factorial of a non-negative integer n, denoted by n!, is the product of all positive integers
+# less than or equal to n)
+# Example 1: Input: 4, Output: 24 (1 * 2 * 3 * 4)
+# Example 2: Input: 6, Output: 720 (1 * 2 * 3 * 4 * 5 * 6)
+# Example 3: Input: 1, Output: 1
+
+def factorials():
+  user_input = input("Please Enter a non-negative integer to get it's factorials: ")
+
+  while (not user_input.isnumeric() or int(user_input) <= 0):
+    user_input = input("invalid input!, Please Enter a non-negative integer: ")
+    
+  x = int(user_input)
+  lst = []
+  
+  while (x >= 1):
+    lst.append(x)
+    x = x - 1
+
+  lst = lst[::-1]
+  
+  result = 1
+  for y in lst:
+    result = result * y
+
+  if (result == 1):
+    print(result)
+  else:
+    str1 = "(" + " * ".join([str(i) for i in lst]) + ")"
+    print(result, str1)
+  
+
+#factorials()
+
+##################################################################################
+# 2. Write a function that takes an integer as an input from the user and finds all its divisors
+# and stores them in a list.
+# Example 1: Input: 10, Output: [1, 2, 5, 10]
+# Example 2: Input: 16, Output: [1, 2, 4, 8, 16]
+# Example 3: input: 5, Output: []
+
+def devisors():
+  user_input = input("Please Enter a non-negative integer to get it's Devisors: ")
+
+  while (not user_input.isnumeric() or int(user_input) <= 0):
+    user_input = input("invalid input!, Please Enter a non-negative integer: ")
+
+  x = int(user_input)
+  lst = []
+  result = 1
+
+  while (result <= x):
+    if (x % result == 0):
+      lst.append(result)
+      result = result + 1
+    else:
+       result = result + 1
+
+  if (len(lst) < 3):
+    print([])
+  else:
+    print(lst)
+
+#devisors()
+
+##################################################################################
+# Write a function called reverseString that takes a string as input from the user and returns
+# the string reversed. You must use a loop to implement the reversal, and you cannot use any
+# built-in string or list reversal functions.
+# Example 1: Input: “Hello World”, Output: “dlroW olleH”
+# Example 2: Input: “oneword”, Output: “droweno”
+
+def reverseString():
+  str1 = input("Please enter your phrase: ")
+  reversed_str = ""
+  
+  for i in str1:
+    reversed_str = i + reversed_str
+  print(reversed_str) 
+
+#reverseString()
+
+#################################################################################
+# 4. Write a function that takes a list of integers as input from the user and returns a new list
+# containing only the even numbers from the original list, in the same order.
+# Example 1: Input: [1, 2, 3, 4, 5, 6], Output: [2, 4, 6]
+# Example 2: Input: [5, 3, 18, 4, 2, 7, 10], Output: [18, 4, 2, 10]
+# Example 3: Input: [5, 3, 11, 5, 1, 7, 27], Output: []
+
+def evenNumbers():
+  user_input = input("Please Enter your integers separated by ',' to get a list of the even numbers out of them: ")
+
+  nocmmas_list = []
+  
+  nospaces_list = user_input.split()
+  for i in nospaces_list:
+    if "," in i:
+      lst1 = i.split(",")
+      for i in lst1:
+        if (i != "," and i != ''):
+          nocmmas_list.append(i)
+    else:
+      nocmmas_list.append(i)
+      
+  no_left_bracket_list =[]
+  
+  for i in nocmmas_list:
+    if "[" in i:
+      lst1 = i.split("[")
+      for i in lst1:
+        if i.isnumeric() == True:
+          no_left_bracket_list.append(i)
+    else:
+      no_left_bracket_list.append(i)
+      
+  no_brackets_list = []
+  for i in no_left_bracket_list:
+    if "]" in i:
+      lst1 = i.split("]")
+      for i in lst1:
+        if i.isnumeric() == True:
+          no_brackets_list.append(i)
+    else:
+      no_brackets_list.append(i)
+
+  even_numbers_list = []
+  for i in no_brackets_list:
+    if (i.isnumeric() == True and int(i) % 2 == 0):
+      even_numbers_list.append(int(i))
+      
+  
+  print(even_numbers_list)
+
+#evenNumbers()
+
+######################################################################################
+# 5. Write a function that takes a string as input and checks whether it meets the requirements
+# for a strong password. A strong password should be at least 8 characters long, contain at
+# least one uppercase letter, one lowercase letter, one digit, and one special character (a
+# special character is either #, ?, !, $).
+# Example 1: Input: “Hello5?world” Output: “Strong password”
+# Example 2: Input: “password” Output: “Weak password”
+# Example 3: Input: “Password123” Output: “Weak password”
+
+def strongPassword():
+  str = input("Please enter your password to check if it is strong or not: ")
+
+  while (len(str) <= 7):
+    str = input("Short password!, Please enter a password that is longer than 8 characters: ")
+
+  digit_item = any(i.isdigit() for i in str)
+  lower_item = any(i.islower() for i in str)
+  upper_item = any(i.isupper() for i in str)
+  lst = ["#", "?", "!", "$"]
+  special_item = any(i in str for i in lst)
+
+  strong_pass = False
+  if (lower_item == True and upper_item == True and special_item == True and digit_item == True):
+    strong_pass = True
+  else:
+    strong_pass == False
+
+  if strong_pass == True:
+    print("Strong Password!")
+  else:
+    print("Weak password")
+
+#strongPassword()
+
+#   while (lower_item == False and upper_item == True and special_item == True and digit_item == True):
+#     str = input("Weak password!, Please enter a password with at least on lowercase: ")
+
+#   while (lower_item == True and upper_item == False and special_item == True and digit_item == True):
+#     str = input("Weak password!, Please enter a password with at least on uppercase: ")
+
+#   while (lower_item == True and upper_item == True and special_item == False and digit_item == True):
+#     str = input("Weak password!, Please enter a password with one of these characters \n# ? ! $: ")
+
+#   while (lower_item == True and upper_item == True and special_item == True and digit_item == False):
+#     str = input("Weak password!, Please enter a password with at least one number: ")
+# #######
+#   while (lower_item == False and upper_item == False and special_item == True and digit_item == True):
+#     str = input("Weak password!, Please enter a password with at least one lowercase and one uppercase: ")
+
+#   while (lower_item == True and upper_item == False and special_item == False and digit_item == True):
+#     str = input("Weak password!, \nPlease enter a password with at least one uppercase and a special characters: ")
+
+#   while (lower_item == True and upper_item == True and special_item == False and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one special character and a number: ")
+
+#   while (lower_item == False and upper_item == True and special_item == False and digit_item == True):
+#     str = input("Weak password!, \nPlease enter a password with at least one lowercase \nand a special characters: ")
+
+#   while (lower_item == False and upper_item == True and special_item == True and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one lowercase and a number: ")
+# #######
+#   while (lower_item == True and upper_item == False and special_item == False and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one uppercase, \na special characters and a number: ")
+
+#   while (lower_item == False and upper_item == True and special_item == False and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one uppercase, \nspecial character and a number: ")
+
+#   while (lower_item == False and upper_item == False and special_item == True and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one lowercase, \nuppercase and a number: ")
+
+#   # while (lower_item == False and upper_item == False and special_item == False and digit_item == True):
+#   #   str = input("Weak password!, \nPlease enter a password with at least one lowercase, \nuppercase and a special character: ")
+
+#   while (lower_item == False and upper_item == False and special_item == False and digit_item == False):
+#     str = input("Weak password!, \nPlease enter a password with at least one lowercase, \none upper case, one special character and a number: ")
+##################################################################################################################
+
+# 6. BONUS QUESTION (For FSW Peeps): Write a function that takes a string as input and
+# checks whether it is a valid IPv4 address. A valid IPv4 address is a string of four numbers
+# separated by periods, where each number is between 0 and 255. For example,
+# "192.168.1.1" is a valid IPv4 address. (You should research more about IPv4).
+# Here are examples of strings that would be considered valid IPv4 addresses:
+# "192.168.1.1"
+# "172.16.0.0"
+# "10.0.0.1"
+# "255.255.255.0"
+# here are examples of strings that would be considered invalid IPv4 addresses:
+# "256.168.1.1" (octet value too large)
+# "192.168.1" (missing octet)
+# "10.0.0.01" (leading zero in octet)
+# "192.168.01.1" (leading zero in octet)
+# "192.168.1.1.1" (extra period)
+# "192.168..1" (consecutive periods)
+# "192.168.1.-1" (negative number)
+# Note: an octet is each number for example 192 or 255. An octet can be 0 for example
+# 0.192.1.1 is valid but it cannot start with 0 for example 01.192.1.1 is invalid.
+
+def checkIP():
+  str = input("Enter your IP to check if it is a valid one:\n")
+  
+  while ( 15 < len(str) or len(str) < 7):
+    print("01 error.Invalid IPv4 address.")
+    checkIP()
+    #str = input("Your IP should look something like this.\n192.168.1.1\nType a new one: ")
+
+  lst = str.split(".")
+
+  for i in lst:
+    if i.isnumeric() != True:
+      print("02 error.Invalid IP address. Your IP can be only numbers. ")
+      checkIP()
+
+  continue_ = False
+  if (len(lst) == 4):
+    continue_ = True
+  else:
+    print("03 error.Invalid IP address. Your IP should be separeted by(.) ")
+    checkIP()
+
+  if (continue_ == True):   
+    wrong1 = any( 0 > int(i) or int(i) > 255 for i in lst)
+    if wrong1 == True:
+      print("Invalid IP address.(octet should be between 0 and 255)")
+      checkIP()
+
+    for i in lst:
+      if (len(i) > 0) and (int(i[0]) == 0):     
+        print("Invalid IP address.(leading zero in octet)")
+        checkIP()
+        
+  print("Your IP is valid.")
+checkIP()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
