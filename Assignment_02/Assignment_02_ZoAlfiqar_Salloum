@@ -1,10 +1,16 @@
-def countDigit(n):
+######################################
+######################################
+######### Assignment_02 ##############
+######################################
+
+
+def countDigit(n): ######### First function ###########
   if (n == 0):
     return 0
   else:
     return 1 + countDigit(n // 10)
   
-def findMax(lst):
+def findMax(lst): ######### Second function ###########
     if len(lst) == 1:
       return lst[0]
       
@@ -16,10 +22,14 @@ def findMax(lst):
       del lst[1]
       return findMax(lst)
     
-def main():
+def main(): ######### The Main function ###########
+  
   print("1. Count Digits\n2. Find Max\n3. Count Tags\n4. Count Normalized Columns\n5. Exit\n- - - - - - - - - - - - - - -")
   choice_ = int(input("Enter a choice: "))
-  if choice_ == 1:      
+
+##############################################################
+
+  if choice_ == 1: ######### First Choice - Count digits ###########
     num1 = input("Please enter an integer to get the count number of it's digits: ")
     while (num1.isnumeric() != True) or (int(num1) < 0):
       print("Invalid input, please try again.")
@@ -27,11 +37,41 @@ def main():
     num1 = int(num1)
     count = countDigit(num1)
     print("Number of digits is: ", count)
+
+#############################################################
   
-  elif choice_ == 2:
-    findMax()
+  elif choice_ == 2: ######### Second Choice - Maximum Number In a List ###########
+    lst = input("Please Enter your integers separated by spaces or by',' to get the maximum value: \n")
+    lst01 = lst.split()
+    lst03 = []
+    
+    for i in lst01:
+      if "," in i:
+        lst02 = i.split(",")
+        for i in lst02:
+          if (i != "," and i != ''):
+            lst03.append(i)
+      else:
+        lst03.append(i)
+        
+    lst_numbers = []
+    for i in lst03:
+      if i.isnumeric() == True:
+        lst_numbers.append(i)
+      else:
+        print("Error, Invalid input")
+   
+    lst_final = [eval (i) for i in lst_numbers]    
+    maxi = findMax(lst_final)
+    print("The Maximum number of your list is: ", maxi)
+
+#############################################################
+
   elif choice_ == 3:
     countTags()
+
+#############################################################
+
   elif choice_ == 4:
     countNormalizedColumns()
   elif (choice_ == 5):
