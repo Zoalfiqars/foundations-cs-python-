@@ -3,6 +3,18 @@ def countDigit(n):
     return 0
   else:
     return 1 + countDigit(n // 10)
+  
+def findMax(lst):
+    if len(lst) == 1:
+      return lst[0]
+      
+    if lst[0] < lst[1]:
+      lst[0] = lst[1]
+      return findMax(lst[1:])
+    else:
+      lst[0] > lst[1]
+      del lst[1]
+      return findMax(lst)
     
 def main():
   print("1. Count Digits\n2. Find Max\n3. Count Tags\n4. Count Normalized Columns\n5. Exit\n- - - - - - - - - - - - - - -")
