@@ -20,6 +20,14 @@ def findMax(lst): ######### Second function ###########
       lst[0] > lst[1]
       del lst[1]
       return findMax(lst)
+
+def countTags(input_str, input_tag): ######### Third function ###########
+  if (input_tag in input_str) != True:
+    return 0
+  else:
+    lst = input_str.split(input_tag, 1)
+    the_rest = lst[1]
+    return 1 + countTags(the_rest, input_tag)
     
 def main(): ######### The Main function ###########
   
