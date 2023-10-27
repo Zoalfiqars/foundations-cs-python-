@@ -75,7 +75,26 @@ def main(): ######### The Main function ###########
 #############################################################
 
   elif choice_ == 3:
-    countTags()
+    input_str = ("""Here is the HTML script: \n<html>
+<head>
+<title>My Website</title>
+</head>
+<body>
+<h1>Welcome to my website!</h1>
+<p>Here you'll find information about me and my hobbies.</p>
+<h2>Hobbies</h2>
+<ul>
+<li>Playing guitar</li>
+<li>Reading books</li>
+<li>Traveling</li>
+<li>Writing cool h1 tags</li>
+</ul>
+</body>
+</html> /n """)
+    print(input_str)
+    input_tag = input("Please type the tag that you want to know it's count of occurrences in previous code.\nExample: h1\n")
+    input_tag = "</" + input_tag
+    print (countTags(input_str, input_tag))
 
 #############################################################
 
