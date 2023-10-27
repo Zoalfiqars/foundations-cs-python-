@@ -74,7 +74,7 @@ def main(): ######### The Main function ###########
 
 #############################################################
 
-  elif choice_ == 3:
+  elif choice_ == 3:  ######### Third Choice - Number of tags in html script ###########
     input_str = ("""Here is the HTML script: \n<html>
 <head>
 <title>My Website</title>
