@@ -1,1 +1,23 @@
+def desMenu():
+  print("1. Count Digits\n2. Find Max\n3. Count Tags\n4. Count Normalized Columns\n5. Exit\n- - - - - - - - - - - - - - -")
+  global choice_
+  choice_ = int(input("Enter a choice: "))
 
+def main():
+  desMenu()
+
+  while (choice_ != 5):
+    if choice_ == 1:
+      countDigit()
+    elif choice_ == 2:
+      findMax()
+    elif choice_ == 3:
+      countTags()
+    elif choice_ == 4:
+      countNormalizedColumns()
+    else:
+      print("Invalid choice.")
+      
+    desMenu()
+    print("Thanks for using my program.")
+main()
