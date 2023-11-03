@@ -2,3 +2,88 @@
 ########### Assignment_03 ############
 ######################################
 
+# You need to simulate student data by creating a list of dictionaries. Each dictionary represents a
+# student's information with the following fields:
+# • 'ID' (integer): The student's unique identifier.
+# • 'Name' (string): The student's name.
+# • 'Age' (integer): The student's age.
+# • 'Major' (string): The student's major.
+# • 'GPA' (float): The student's grade point average.
+
+# Your task is to implement functions that simulate API endpoints for retrieving student
+# information. Your program should start by displaying the following menu:
+
+# 1. Get Student by ID
+# 2. Get All Students
+# 3. Get Students by Major
+# 4. Add Student
+# 5. Find Common Majors
+# 6. Delete Student
+# 7. Calculate Average GPA
+# 8. Get Top Performers
+# 9. Exit
+# - - - - - - - - - - - - - - -
+
+# Choice 1: This function takes the student data and a student's ID as arguments and returns the
+# information of the student with the given ID.
+# Choice 2: This function takes the student data as an argument and returns a list of all students'
+# information.
+# Choice 3: This function takes the student data and a major as arguments and returns a list of
+# students in the specified major.
+# Choice 4: This function takes the student data, a name, an age, a major, and a GPA as arguments
+# and adds a new student to the data.
+# Choice 5 This function takes two student data lists as arguments and returns a set of common
+# majors found in both lists.
+# Choice 6: This function takes the student data and a student's ID as arguments and removes the
+# student with the given ID from the data.
+# Choice 7: This function takes the student data as an argument and returns the average GPA of
+# all the students in the data.
+# Choice 8: This function takes the student data and the number of top-performing students to
+# retrieve as arguments. It returns a tuple of the specified number of students with the highest
+# GPAs (the tuple should have the name of those students).
+# Choice 9: This choice terminates the program.
+
+student_data = [
+  {"ID": 1, "Name":"Ali", "Age":21, "Major":"Mathematics", "GPA":3.7}, {"ID":2, "Name":"Ahmad", "Age":21, "Major":"History", "GPA":3.6}, 
+  {"ID":3, "Name":"Yara", "Age":20, "Major":"Computer Science", "GPA":3.2}, {"ID":4, "Name":"Eliea", "Age":22, "Major":"Psychology", "GPA":3.8}, 
+  {"ID":5, "Name":"Mohamad", "Age":19, "Major":"Engineering", "GPA":3.1}, {"ID":6, "Name":"Hanan", "Age":23, "Major":"English", "GPA":3.9}, 
+  {"ID":7, "Name":"Omar", "Age":20, "Major":"Mathematics", "GPA":2.8}, {"ID":8, "Name":"Reem", "Age":23, "Major":"Engineering", "GPA":3.5}, 
+  {"ID":9, "Name":"Yazan", "Age":21, "Major":"Psychology", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8}, {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, 
+  {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4}, {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, 
+  {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1}, {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}]
+
+def desMenu():
+    print("The Menu:\n1. Get Student by ID\n2. Get All Students\n3. Get Students by Major\n4. Add Student\n5. Find Common Majors\n6. Delete Student\n7. Calculate Average GPA\n8. Get Top Performers\n9. Exit")
+
+
+def getStudentByID (lst, id_input, index): #Choice 1: This function takes the student data and a student's ID as arguments and returns the information of the student with the given ID.
+    if (index > len(lst)-1):
+        print("Student was not found.")
+        return
+    elif lst[index]["ID"] == id_input:
+        for i in lst[index]:
+           print(i+":", lst[index][i])
+        return
+    elif lst[index]["ID"] != id_input:
+        index += 1
+        getStudentByID(lst, id_input, index)
+    
+    
+       
+def Main():
+  desMenu()
+  choice = input("Enter your choice's number please: ")
+  while (choice.isnumeric() != True) or (int(choice) < 0): 
+    choice = input("Invalid choice, Please chose a number out of the list: ")
+  choice = int(choice)
+
+  if choice == 1:
+    id = input("Please enter the student's ID to get his/her info: ")
+    while (id.isnumeric() != True) or (int(id) < 0):
+      id = input("Invalid ID input, please enter a positive integer: ")
+    id = int(id)
+    getStudentByID(student_data, id, 0)
+   
+
+Main()
+
