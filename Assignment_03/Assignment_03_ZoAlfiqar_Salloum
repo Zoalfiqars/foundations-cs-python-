@@ -48,9 +48,10 @@ student_data = [
   {"ID":3, "Name":"Yara", "Age":20, "Major":"Computer Science", "GPA":3.2}, {"ID":4, "Name":"Eliea", "Age":22, "Major":"Psychology", "GPA":3.8}, 
   {"ID":5, "Name":"Mohamad", "Age":19, "Major":"Engineering", "GPA":3.1}, {"ID":6, "Name":"Hanan", "Age":23, "Major":"English", "GPA":3.9}, 
   {"ID":7, "Name":"Omar", "Age":20, "Major":"Mathematics", "GPA":2.8}, {"ID":8, "Name":"Reem", "Age":23, "Major":"Engineering", "GPA":3.5}, 
-  {"ID":9, "Name":"Yazan", "Age":21, "Major":"Psychology", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8}, {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, 
-  {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4}, {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, 
-  {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1}, {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}]
+  {"ID":9, "Name":"Yazan", "Age":21, "Major":"Psychology", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8},
+  {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4},
+  {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1},
+  {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
 
 def desMenu():
     print("The Menu:\n1. Get Student by ID\n2. Get All Students\n3. Get Students by Major\n4. Add Student\n5. Find Common Majors\n6. Delete Student\n7. Calculate Average GPA\n8. Get Top Performers\n9. Exit")
@@ -68,8 +69,64 @@ def getStudentByID (lst, id_input, index): #Choice 1: This function takes the st
         index += 1
         getStudentByID(lst, id_input, index)
     
-    
+def getAllStudents(lst):  # Choice 2: This function takes the student data as an argument and returns a list of all students' information.
+   lst_of_lists = []
+   for i in lst:
+      student_list = []
+      for key, value in i.items():
+         student_list.append(key)
+         student_list.append(value)
+      lst_of_lists.append(student_list)
+   for i in lst_of_lists:
+    print(i)
+         
+
        
+
+def getStudentsByMajor(lst,major):    # Choice 3: This function takes the student data and a major as arguments and returns a list of students in the specified major.
+   if major == 1: #Computer Science
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "Computer Science":
+            final_lst.append(i)
+      print(final_lst)
+
+   if major == 2: #Mathematics
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "Mathematics":
+            final_lst.append(i)
+      print(final_lst)
+
+   if major == 3: #History
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "History":
+            final_lst.append(i)
+      print(final_lst)
+
+   if major == 4: #Psychology
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "Psychology":
+            final_lst.append(i)
+      print(final_lst)
+
+   if major == 5: #Engineering
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "Engineering":
+            final_lst.append(i)
+      print(final_lst)
+
+   if major == 6: #English
+      final_lst = []
+      for i in lst:
+         if i["Major"] == "English":
+            final_lst.append(i)
+      print(final_lst)
+
+
 def Main():
   desMenu()
   choice = input("Enter your choice's number please: ")
@@ -83,6 +140,17 @@ def Main():
       id = input("Invalid ID input, please enter a positive integer: ")
     id = int(id)
     getStudentByID(student_data, id, 0)
+
+  if choice == 2:
+     getAllStudents(student_data)
+
+  if choice == 3:
+     maj = input("Please chose a Major by entering it's number:\n1. Computer Science\n2. Mathematics\n3. History\n4. Psychology\n5. Engineering\n6. English\ntype a number: ")
+     maj_lst = [1,2,3,4,5,6]
+     while (maj.isnumeric() != True) or ((int(maj) in maj_lst) != True):
+        maj = input("Invalid Input!\nPlease chose a Major by entering it's number:\n1. Computer Science\n2. Mathematics\n3. History\n4. Psychology\n5. Engineering\n6. English\ntype number: ")
+     maj = int(maj)
+     getStudentsByMajor(student_data, maj)   
    
 
 Main()
