@@ -53,6 +53,8 @@ student_data = [
   {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1},
   {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
 
+new_student = {}
+
 def desMenu():
     print("The Menu:\n1. Get Student by ID\n2. Get All Students\n3. Get Students by Major\n4. Add Student\n5. Find Common Majors\n6. Delete Student\n7. Calculate Average GPA\n8. Get Top Performers\n9. Exit")
 
@@ -126,6 +128,57 @@ def getStudentsByMajor(lst,major):    # Choice 3: This function takes the studen
             final_lst.append(i)
       print(final_lst)
 
+def getName(new_student_name, confirm):  # Choice 4 (1): This function gets the student's name.
+  if confirm == 1:
+    new_student["Name"] = new_student_name
+    return
+  elif confirm == 2:
+    new_student_name = input("please enter the student's name again: ")
+    print("New student's name is: ",new_student_name)
+    confirm = input("Confirm?\n1. Yes\n2. No\ntype the number of your choice: ")
+    while not confirm.isnumeric():
+      confirm = input("Invalid input, Confirm?\n1. Yes\n2. No\ntype 1 or 2 please!: ")
+    confirm = int(confirm)
+    getName(new_student_name, confirm)
+  else:
+    print("Invalid input, please chose 1 or 2!")
+    print("New student's name: ",new_student_name)
+    confirm = input("Confirm?\n1. Yes\n2. No\ntype 1 or 2 please!: ")
+    while not confirm.isnumeric():
+      confirm = input("Invalid input, Confirm?\n1. Yes\n2. No\ntype 1 or 2 please!: ")
+    x = int(confirm)
+    getName(new_student_name, x)
+
+def getAge():  # Choice 4 (2): This function gets the student's Age.
+  age = input("Please enter age: ")
+  while (age.isnumeric() != True) or ((int(age) >= 18) != True):
+    age = input("Error! Age should be a number and over 18: ")
+  new_student["Age"] = age
+
+def getMajor():  # Choice 4 (3): This function gets the student's Major.
+  maj02 = input("Please chose a Major by entering it's number:\n1. Computer Science\n2. Mathematics\n3. History\n4. Psychology\n5. Engineering\n6. English\ntype a number: ")
+  maj_lst02 = [1,2,3,4,5,6]
+  while (maj02.isnumeric() != True) or ((int(maj02) in maj_lst02) != True):
+    maj02 = input("Invalid Input!\nPlease chose a Major by entering it's number:\n1. Computer Science\n2. Mathematics\n3. History\n4. Psychology\n5. Engineering\n6. English\ntype number: ")
+  maj02 = int(maj02)
+
+  if maj02 == 1:
+    new_student["Major"] = "Computer Science"
+
+  if maj02 == 2:
+    new_student["Major"] = "Mathematics"
+
+  if maj02 == 3:
+    new_student["Major"] = "History"
+
+  if maj02 == 4:
+    new_student["Major"] = "Psychology"
+
+  if maj02 == 5:
+    new_student["Major"] = "Engineering"
+
+  if maj02 == 6:
+    new_student["Major"] = "English"
 
 def Main():
   desMenu()
@@ -134,17 +187,17 @@ def Main():
     choice = input("Invalid choice, Please chose a number out of the list: ")
   choice = int(choice)
 
-  if choice == 1:
+  if choice == 1: #1. Get Student by ID
     id = input("Please enter the student's ID to get his/her info: ")
     while (id.isnumeric() != True) or (int(id) < 0):
       id = input("Invalid ID input, please enter a positive integer: ")
     id = int(id)
     getStudentByID(student_data, id, 0)
 
-  if choice == 2:
+  if choice == 2: #2. Get All Students
      getAllStudents(student_data)
 
-  if choice == 3:
+  if choice == 3: #3. Get Students by Major
      maj = input("Please chose a Major by entering it's number:\n1. Computer Science\n2. Mathematics\n3. History\n4. Psychology\n5. Engineering\n6. English\ntype a number: ")
      maj_lst = [1,2,3,4,5,6]
      while (maj.isnumeric() != True) or ((int(maj) in maj_lst) != True):
@@ -152,6 +205,19 @@ def Main():
      maj = int(maj)
      getStudentsByMajor(student_data, maj)   
    
+  if choice == 4:  #4. Add Student
+     new_student["ID"] = len(student_data)
+     new_student_name = input("Enter Full Name Please: ")
+     print("New student's name is: ",new_student_name)
+     confirm = input("Confirm?\n1. Yes\n2. No\ntype the number of your choice: ")
+     while (confirm != "1") and (confirm != "2"):
+        confirm = input("Invalid choice!\nConfirm?\n1. Yes\n2. No\ntype the number of your choice: ")
+     confirm = int(confirm)
+     getName(new_student_name, confirm)
+     getAge()
+     getMajor()
+
+
 
 Main()
 
