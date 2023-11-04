@@ -180,6 +180,21 @@ def getMajor():  # Choice 4 (3): This function gets the student's Major.
   if maj02 == 6:
     new_student["Major"] = "English"
 
+def getGPA():  # Choice 4 (4): This function gets the student's GPA.
+  gpa = input("Enter student's GPA: ")
+  try:
+    float(gpa)
+    if 4 >= float(gpa) >= 0 :
+      new_student["GPA"] = gpa
+    else:
+      print("Invalid Input! GPA should be between 0 and 4.")
+      getGPA()
+    return
+  except ValueError:
+    print("Invalid Input!")
+    getGPA()
+    return
+
 def Main():
   desMenu()
   choice = input("Enter your choice's number please: ")
@@ -216,6 +231,10 @@ def Main():
      getName(new_student_name, confirm)
      getAge()
      getMajor()
+     getGPA()
+     print("The New Student's Info was added:\n", new_student)
+     student_data.append(new_student)
+     print("New Student List:\n", student_data)
 
 
 
