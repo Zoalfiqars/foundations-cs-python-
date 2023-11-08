@@ -53,6 +53,16 @@ student_data = [
   {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1},
   {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
 
+student_data02 = [
+  {"ID": 1, "Name":"Ali", "Age":21, "Major":"Art", "GPA":3.7}, {"ID":2, "Name":"Ahmad", "Age":21, "Major":"History", "GPA":3.6}, 
+  {"ID":3, "Name":"Yara", "Age":20, "Major":"Computer Science", "GPA":3.2}, {"ID":4, "Name":"Eliea", "Age":22, "Major":"Music", "GPA":3.8}, 
+  {"ID":5, "Name":"Mohamad", "Age":19, "Major":"Engineering", "GPA":3.1}, {"ID":6, "Name":"Hanan", "Age":23, "Major":"Arabic", "GPA":3.9}, 
+  {"ID":7, "Name":"Omar", "Age":20, "Major":"Art", "GPA":2.8}, {"ID":8, "Name":"Reem", "Age":23, "Major":"Engineering", "GPA":3.5}, 
+  {"ID":9, "Name":"Yazan", "Age":21, "Major":"Music", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8},
+  {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4},
+  {"ID":13, "Name":"Ali", "Age":19, "Major":"Art", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Music", "GPA":3.1},
+  {"ID":15, "Name":"Kareem", "Age":20, "Major":"Arabic", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
+
 new_student = {}
 
 def desMenu():
@@ -195,6 +205,26 @@ def getGPA():  # Choice 4 (4): This function gets the student's GPA.
     getGPA()
     return
 
+common_majors = set()
+def getCommonMajors(student_data, student_data02):  #Choice 5: This function takes two student data lists as arguments and returns a set of common majors found in both lists.
+  empty_set01 = set()
+  empty_set02 = set()
+  for i in student_data:
+    empty_set01.add(i["Major"])
+  for i in student_data02:
+    empty_set02.add(i["Major"])
+  for i in empty_set01:
+    for x in empty_set02:
+      if i == x:
+        common_majors.add(i)
+  return(common_majors)
+
+
+
+#######################
+#### Main Function ####
+#######################
+
 def Main():
   desMenu()
   choice = input("Enter your choice's number please: ")
@@ -236,7 +266,11 @@ def Main():
      student_data.append(new_student)
      print("New Student List:\n", student_data)
 
+  if choice == 5:  #5. Find Common Majors
+     getCommonMajors(student_data, student_data02)
+     print(common_majors)
 
+     
 
 Main()
 
