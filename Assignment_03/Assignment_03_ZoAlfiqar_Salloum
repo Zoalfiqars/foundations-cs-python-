@@ -220,6 +220,14 @@ def getCommonMajors(student_data, student_data02):  #Choice 5: This function tak
   return(common_majors)
 
 
+def removeStudent(student_data, student_id):
+   for i in student_data:
+      if i["ID"] == student_id:
+         print(i, "\nThis student was removed.")
+         student_data.remove(i)
+      else:
+         print("Student was not found.")
+   print(student_data)
 
 #######################
 #### Main Function ####
@@ -270,7 +278,11 @@ def Main():
      getCommonMajors(student_data, student_data02)
      print(common_majors)
 
-     
-
+  if choice == 6:  #6. Delete Student
+     student_id = input("Please enter the student's ID number: ")
+     while (student_id.isnumeric() != True) or (int(student_id) < 0):
+      student_id = input("Invalid ID input, please enter a positive integer: ")
+     student_id = int(student_id)
+     removeStudent(student_data, student_id)
 Main()
 
