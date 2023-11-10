@@ -226,6 +226,7 @@ def removeStudent(student_data, student_id):
          print(i, "\nThis student was removed.")
          student_data.remove(i)
       else:
+         
          print("Student was not found.")
    print(student_data)
 
