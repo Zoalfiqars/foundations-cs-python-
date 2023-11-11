@@ -40,6 +40,42 @@ def getTitle():
     if confirm == "1":
         return title
     elif confirm == "2":
-        getTitle()
+        return getTitle()
 
 
+
+
+
+###################################################################
+###################################################################
+###### This function asks the user to enter the tab's URL, ########
+############ handles the user's input and return a URL ############
+############################### ## ################################
+##  NOTE: I did a research to know how to check if the user's    ##
+##  input is a valid URL. I found so many methods and finally    ##
+##  chose .startwith() method. Here is the link of the page:    ###
+##    https://www.geeksforgeeks.org/python-check-url-string/     ##
+###################################################################
+###################################################################
+def getURL():
+    url = input("Please enter a valid URL.\nNote: URL should start with 'http:', 'https:' or 'www.'\nType your URL here: ")
+    while (url.startswith("https:") != True) and (url.startswith("http:") != True) and (url.startswith("www.") != True):
+        url = input("Invalid URL!\nPlease enter a valid URL.\nNote: URL should start with 'http:', 'https:' or 'www.'\nType your URL here: ")
+    print("Are you sure that",url,"is the tab's URL?\n1. YES\n2. NO")
+    confirm = input("Please type 1 or 2: ")
+    while (confirm != "1") and (confirm != "2"):
+        confirm = input("Invalid input! Please enter 1 or 2: ")
+    if confirm == "1":
+        return url
+    elif confirm == "2":
+        return getURL()
+
+
+
+
+
+def getIndex():
+    index = input("Please enter the index: ")
+    while (index.isnumeric() != True) and ((int(index) >= 0) != True):
+        index = input("Invalid input! Index should be an integer and > 0.\nPlease enter the index again: ")
+    
