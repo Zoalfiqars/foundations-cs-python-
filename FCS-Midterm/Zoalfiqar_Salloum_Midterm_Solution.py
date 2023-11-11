@@ -39,6 +39,30 @@ def createJsonFile():
 
 
 
+
+###################################################################
+###################################################################
+#### This function takes the new updates as a new JSON file and ###
+######## replace it with the older version of the same file #######
+###################################################################
+###################################################################
+def updateJsonFile(new_updates, filename = "opened_tabs"):
+    with open(filename, "w") as f:
+        json.dump(new_updates, f)
+
+
+
+
+
+def openNewTab(title, url, nested_list):
+    with open("opened_tabs.json") as f:
+        data = json.load(f)
+        temp_data = data
+        new_tab = {"Title":title,"URL":url, "Nested":[]}
+
+
+
+
 ###################################################################
 ###################################################################
 ########### This function displays the software menu ##############
