@@ -63,6 +63,8 @@ def updateJsonFile(new_updates, filename = "opened_tabs.json"):
 
 
 
+
+
 ###################################################################
 ###################################################################
 ### This function will load the JSON file, make a temporary copy ##
@@ -86,6 +88,23 @@ def openNewTab(title, url, nested_list):
 
 ###################################################################
 ###################################################################
+########### This function will close the last opened ##############
+##### tab (Removes the last element in the list) if no index ######
+#####                   was entered                            ####
+###################################################################
+###################################################################
+def closeLastOpenedTab():
+    with open("opened_tabs.json") as f:
+        data = json.load(f)
+        data.remove(data[-1])
+        return data
+
+
+
+
+
+###################################################################
+###################################################################
 ########### This function displays the software menu ##############
 ###################################################################
 ###################################################################
@@ -96,6 +115,7 @@ def displayMenu():
         choice = input("Invalid input! Please enter one of the numbers below: ")
     choice = int(choice)
     return choice
+
 
 
 
