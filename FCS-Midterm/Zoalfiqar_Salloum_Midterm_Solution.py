@@ -86,27 +86,12 @@ def openNewTab(title, url, nested_list):
 
 
 
-###################################################################
-###################################################################
-########### This function will close the last opened ##############
-##### tab (Removes the last element in the list) if no index ######
-#####                   was entered                            ####
-###################################################################
-###################################################################
-def closeLastOpenedTab():
-    with open("opened_tabs.json") as f:
-        data = json.load(f)
-        data.remove(data[-1])
-        return data
-
-
-
-
 
 ###################################################################
 ###################################################################
 ########### This function will close the tab with the #############
 #####            index that the user has chosen              ######
+###          (Delete the dictionary from the list)              ###
 ###################################################################
 ###################################################################
 def closeChosenTab(index):
@@ -201,15 +186,22 @@ def getURL():
 ###################################################################
 ###################################################################
 def getIndex():
+    with open("opened_tabs.json") as f:
+        data = json.load(f)
+
     index = input("Please enter the index: ")
     if (index == ""):
         index = -1
         return index
-    
+
     if (index.isnumeric() != True) or ((int(index) >= 0) != True):
         print("Invalid input! please try again")
         return getIndex()
-    
+
+    if (index >= len(data)):
+        print("Input is out of range!\nInput should be <",len(data))
+        return getIndex()
+
     else:
         return index
 
