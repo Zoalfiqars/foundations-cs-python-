@@ -106,14 +106,21 @@ def closeLastOpenedTab():
 ###################################################################
 ###################################################################
 ########### This function will close the tab with the #############
-#####          index that was chose by the user              ######
+#####            index that the user has chosen              ######
 ###################################################################
 ###################################################################
 def closeChosenTab(index):
-    with open("opened_tabs.json") as f:
-        data = json.load(f)
-        data.remove(data[index])
-        return data
+    if index == "":
+        with open("opened_tabs.json") as f:
+            data = json.load(f)
+            data.remove(data[-1])
+            return data
+    else:
+        with open("opened_tabs.json") as f:
+            data = json.load(f)
+            data.remove(data[index])
+            return data
+
 
 
 
@@ -205,15 +212,11 @@ def getIndex():
     
     else:
         return index
-    
+
+
 
         
         
-
-
-
-
-
 ###################################################################
 ###################################################################
 ###                This is the Main Function.                   ###
