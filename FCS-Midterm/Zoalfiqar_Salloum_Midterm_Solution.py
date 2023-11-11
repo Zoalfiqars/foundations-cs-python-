@@ -42,7 +42,7 @@ import json
 ###################################################################
 def createJsonFile():
     tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}, {"Title":"Google", "URL":"https://google.com/", "nested":[]}]
-    json_string = json.dumps(tabs_list)
+    json_string = json.dumps(tabs_list, indent=4)
     with open("opened_tabs.json", "w") as f:
         f.write(json_string)
 
@@ -198,11 +198,12 @@ def getIndex():
         print("Invalid input! please try again")
         return getIndex()
 
-    if (index >= len(data)):
+    if (int(index) >= len(data)):
         print("Input is out of range!\nInput should be <",len(data))
         return getIndex()
 
     else:
+        index = int(index)
         return index
 
 
@@ -230,8 +231,12 @@ def main():
         updateJsonFile(data_updates)
         print("New tab titled:",title,"\nwith the URL:",url,"\nWas successfully opened!")
 
-    if choice == 2:
-        
+    if choice == 2:  #2. Close Tab
+        index = getIndex()
+        updates = closeChosenTab(index)
+        updateJsonFile(updates)
+        print("Tab was successfully closed!")
+
 
 
 
