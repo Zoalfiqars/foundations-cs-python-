@@ -53,12 +53,24 @@ def updateJsonFile(new_updates, filename = "opened_tabs"):
 
 
 
-
+###################################################################
+###################################################################
+### This function will load the JSON file, make a temporary copy ##
+###### of its data, append the new tab data to the temporary ######
+######## copy then return the temporary copy of data to be ########
+### replaced later by using another function with the old data ####
+### in the JSON file. The function will take three parameters to ##
+### make a new tab (New Dictionary) and then add the dictionary ###
+############# to the list of dictionaries / tabs. #################
+###################################################################
+###################################################################
 def openNewTab(title, url, nested_list):
     with open("opened_tabs.json") as f:
         data = json.load(f)
         temp_data = data
         new_tab = {"Title":title,"URL":url, "Nested":[]}
+        temp_data.append(new_tab)
+        return temp_data
 
 
 
@@ -138,8 +150,3 @@ def getIndex():
 
 
 
-
-
-def openNewTab(title, url):
-    dic = {"Title":title, "URL":url}
-    tabs_list.append(dic)
