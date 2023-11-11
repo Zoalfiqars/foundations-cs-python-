@@ -24,6 +24,7 @@ import json
 ##### https://docs.python.org/3/tutorial/inputoutput.html     #####
 ##### https://docs.python.org/3/library/json.html#module-json  ####
 ### https://docs.python.org/3/reference/compound_stmts.html#with ##
+# https://www.geeksforgeeks.org/append-to-json-file-using-python/ #
 ########### https://www.youtube.com/watch?v=ttQidKChD4c ########### 
 ########### https://www.youtube.com/watch?v=a2pYgIuVCxE ###########
 ########### https://www.youtube.com/watch?v=jABj-SEhtBc ###########
@@ -46,9 +47,9 @@ def createJsonFile():
 ######## replace it with the older version of the same file #######
 ###################################################################
 ###################################################################
-def updateJsonFile(new_updates, filename = "opened_tabs"):
+def updateJsonFile(new_updates, filename = "opened_tabs.json"):
     with open(filename, "w") as f:
-        json.dump(new_updates, f)
+        json.dump(new_updates, f, indent=2)
 
 
 
@@ -67,10 +68,9 @@ def updateJsonFile(new_updates, filename = "opened_tabs"):
 def openNewTab(title, url, nested_list):
     with open("opened_tabs.json") as f:
         data = json.load(f)
-        temp_data = data
         new_tab = {"Title":title,"URL":url, "Nested":[]}
-        temp_data.append(new_tab)
-        return temp_data
+        data.append(new_tab)
+        return data
 
 
 
@@ -148,5 +148,16 @@ def getIndex():
         index = input("Invalid input! Index should be an integer and > 0.\nPlease enter the index again: ")
     return index
 
+
+def main():
+    createJsonFile()
+    x = getTitle()
+    y = getURL()
+    z = []
+
+    updates = openNewTab(x, y, z)
+    updateJsonFile(updates)
+
+main()
 
 
