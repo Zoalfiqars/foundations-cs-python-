@@ -7,8 +7,34 @@
 ################### Friday, November 10, 2023 #####################
 ###################################################################
 ###################################################################
-tabs_list = [{"title":"SE Factory", "URL":"https://sefactory.webflow.io/"}]
+import json
 
+
+
+
+
+###################################################################
+###################################################################
+##### This function creates a JSON file so we can save data  ######
+##### (User's Updates) to it. File's name is (Opened Tabs).  ######
+##### I did a long research about JSON to learn how to use it  ####
+##### and Here are all the links to all websites that I surfed.  ##
+##### Links are not only for this function but for all functions ##
+######################## related to JSON.  ########################
+##### https://docs.python.org/3/tutorial/inputoutput.html     #####
+##### https://docs.python.org/3/library/json.html#module-json  ####
+### https://docs.python.org/3/reference/compound_stmts.html#with ##
+########### https://www.youtube.com/watch?v=ttQidKChD4c ########### 
+########### https://www.youtube.com/watch?v=a2pYgIuVCxE ###########
+########### https://www.youtube.com/watch?v=jABj-SEhtBc ###########
+########### https://www.youtube.com/watch?v=QrRcZmDaO_I ###########
+###################################################################
+###################################################################
+def createJsonFile():
+    tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}]
+    json_string = json.dumps(tabs_list)
+    with open("opened_tabs.json", "w") as f:
+        f.write(json_string)
 
 
 
