@@ -41,7 +41,7 @@ import json
 ###################################################################
 ###################################################################
 def createJsonFile():
-    tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}]
+    tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}, {"Title":"Google", "URL":"https://google.com/", "nested":[]}]
     json_string = json.dumps(tabs_list)
     with open("opened_tabs.json", "w") as f:
         f.write(json_string)
@@ -97,6 +97,22 @@ def closeLastOpenedTab():
     with open("opened_tabs.json") as f:
         data = json.load(f)
         data.remove(data[-1])
+        return data
+
+
+
+
+
+###################################################################
+###################################################################
+########### This function will close the tab with the #############
+#####          index that was chose by the user              ######
+###################################################################
+###################################################################
+def closeChosenTab(index):
+    with open("opened_tabs.json") as f:
+        data = json.load(f)
+        data.remove(data[index])
         return data
 
 
@@ -173,13 +189,26 @@ def getURL():
 ###################################################################
 ########## This function asks the user to enter an Index, #########
 ########## handles the user's input and return the Index ##########
+###                 If no index is provided,                    ###
+###         the function will return (-1) as a value            ###
 ###################################################################
 ###################################################################
 def getIndex():
     index = input("Please enter the index: ")
-    while (index.isnumeric() != True) or ((int(index) >= 0) != True):
-        index = input("Invalid input! Index should be an integer and > 0.\nPlease enter the index again: ")
-    return index
+    if (index == ""):
+        index = -1
+        return index
+    
+    if (index.isnumeric() != True) or ((int(index) >= 0) != True):
+        print("Invalid input! please try again")
+        return getIndex()
+    
+    else:
+        return index
+    
+
+        
+        
 
 
 
