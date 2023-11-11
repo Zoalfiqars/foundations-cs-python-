@@ -94,6 +94,7 @@ def displayMenu():
     choice = input("Please enter your choice's number: ")
     while (choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7") and (choice != "8") and (choice != "9"):
         choice = input("Invalid input! Please enter one of the numbers below: ")
+    choice = int(choice)
     return choice
 
 
@@ -161,8 +162,37 @@ def getIndex():
     return index
 
 
+
+
+
+###################################################################
+###################################################################
+###                This is the Main Function.                   ###
+###  it calls all required functions for the software to run    ###
+###                        Peacefully                           ###
+###################################################################
+###################################################################
 def main():
-    
+
+    createJsonFile()
+
+    choice = displayMenu()  
+
+    if choice == 1:  #1. Open Tabs
+        title = getTitle()
+        url = getURL()
+        nested_tab = []
+        data_updates = openNewTab(title, url, nested_tab)
+        updateJsonFile(data_updates)
+        print("New tab titled:",title,"\nwith the URL:",url,"\nWas successfully opened!")
+
+    if choice == 2:
+        
+
+
+
+
+
 main()
 
 
