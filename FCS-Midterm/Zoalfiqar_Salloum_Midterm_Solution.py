@@ -8,7 +8,8 @@
 ###################################################################
 ###################################################################
 import json
-
+from bs4 import BeautifulSoup
+import requests
 
 
 
@@ -105,6 +106,33 @@ def closeChosenTab(index):
             data = json.load(f)
             data.remove(data[index])
             return data
+
+
+
+
+
+##################################################################################################
+##################################################################################################
+###       This function will get the index from the user and send a request to the website     ###
+###                   to get the HTML of the page and display it as an output                  ###
+##################################################################################################
+###                                           NOTE                                             ###
+#####                           If no index were entered, index = -1.                        #####
+##################################################################################################
+###       These are the links of the websites I checked to learn about web scraping.           ###
+###                         https://en.wikipedia.org/wiki/Web_scraping                         ###
+###            https://www.geeksforgeeks.org/what-is-web-scraping-and-how-to-use-it/           ###
+###                         https://www.youtube.com/watch?v=bargNl2WeN4                        ###
+### https://stackoverflow.com/questions/73370965/import-bs4-could-not-be-resolved-from-source  ###
+###         https://scrapeops.io/python-web-scraping-playbook/installing-beautifulsoup/        ### 
+##################################################################################################
+##################################################################################################
+def displayTabContent(index):
+    with open("opened_tabs.json") as f:
+            data = json.load(f)
+            url = data[index]["URL"]
+            page = requests.get(url)
+            BeautifulSoup(page.text, "html")
 
 
 
@@ -219,7 +247,7 @@ def getIndex():
 ###################################################################
 def main():
 
-    createJsonFile()
+    createJsonFile()  #NOTE: Please comment this function after the first time you run the software!
 
     choice = displayMenu()  
 
@@ -237,11 +265,12 @@ def main():
         updateJsonFile(updates)
         print("Tab was successfully closed!")
 
+    if choice == 3:
 
 
 
 
 
-main()
+#main()
 
 
