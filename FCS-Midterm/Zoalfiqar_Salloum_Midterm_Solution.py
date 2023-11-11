@@ -74,8 +74,22 @@ def getURL():
 
 
 
+###################################################################
+###################################################################
+########## This function asks the user to enter an Index, #########
+########## handles the user's input and return the Index ##########
+###################################################################
+###################################################################
 def getIndex():
     index = input("Please enter the index: ")
-    while (index.isnumeric() != True) and ((int(index) >= 0) != True):
+    while (index.isnumeric() != True) or ((int(index) >= 0) != True):
         index = input("Invalid input! Index should be an integer and > 0.\nPlease enter the index again: ")
-    
+    return index
+
+
+
+
+
+def openNewTab(title, url):
+    dic = {"Title":title, "URL":url}
+    tabs_list.append(dic)
