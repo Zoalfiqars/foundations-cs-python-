@@ -31,6 +31,15 @@ import json
 ########### https://www.youtube.com/watch?v=QrRcZmDaO_I ###########
 ###################################################################
 ###################################################################
+#                 ** A VERY IMPORTANT NOTE **                     #
+#          Please Comment the Function below after                #
+#          you run the software for the first time,               #
+#         otherwise the JSON file will be recreated               #
+#           again every time you run this software                #
+#           and you will lose all your saved data!                #
+#   and also comment the function inside the Main() function      #
+###################################################################
+###################################################################
 def createJsonFile():
     tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}]
     json_string = json.dumps(tabs_list)
@@ -82,7 +91,10 @@ def openNewTab(title, url, nested_list):
 ###################################################################
 def displayMenu():
     print("Welcome to ABTS.\nThe most Advanced Browser Tabs Simulation.\nHere is the Menu, please choose wisely:\n1. Open Tab\n2. Close Tab\n3. Switch Tab\n4. Display All Tabs\n5. Open Nested Tabs\n6. Clear All Tabs\n7. Save Tabs\n8. Import Tabs\n9. Exit ABTS")
-
+    choice = input("Please enter your choice's number: ")
+    while (choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7") and (choice != "8") and (choice != "9"):
+        choice = input("Invalid input! Please enter one of the numbers below: ")
+    return choice
 
 
 
@@ -150,14 +162,7 @@ def getIndex():
 
 
 def main():
-    createJsonFile()
-    x = getTitle()
-    y = getURL()
-    z = []
-
-    updates = openNewTab(x, y, z)
-    updateJsonFile(updates)
-
+    
 main()
 
 
