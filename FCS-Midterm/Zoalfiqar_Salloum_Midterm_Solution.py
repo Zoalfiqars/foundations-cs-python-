@@ -116,6 +116,20 @@ def getIndex():
 
 ###################################################################
 ###################################################################
+########## This function will get the file path from the user
+### in order to be used later on to save the current state of
+### the software
+###################################################################
+###################################################################
+def getPath():
+    path = input("Please enter the path where you want to save your data: ")
+
+
+
+
+
+###################################################################
+###################################################################
 ##### This function creates a JSON file so we can save data  ######
 ##### (User's Updates) to it. File's name is (Opened Tabs).  ######
 ##### I did a long research about JSON to learn how to use it  ####
@@ -142,7 +156,7 @@ def getIndex():
 ###################################################################
 ###################################################################
 def createJsonFile():
-    tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[{"Title":"SE Factory01", "URL":"https://sefactory.webflow.io/"},{"Title":"SE Factory02", "URL":"https://sefactory.webflow.io/"}]}, {"Title":"Google", "URL":"https://google.com/", "nested":[{"Title":"Google02", "URL":"https://google.com/"},{"Title":"Google03", "URL":"https://google.com/"}]}]
+    tabs_list = [{"Title":"SE Factory", "URL":"https://sefactory.webflow.io/", "nested":[]}, {"Title":"Google", "URL":"https://google.com/", "nested":[{"Title":"Google02", "URL":"https://google.com/"},{"Title":"Google03", "URL":"https://google.com/"}]}]
     json_string = json.dumps(tabs_list, indent=4)
     with open("opened_tabs.json", "w") as f:
         f.write(json_string)
@@ -250,8 +264,7 @@ def printAllTitles():
         for i in data:
             print(i["Title"])
             for nested_tabs in i["nested"]:
-                if len(nested_tabs) > 0:
-                    print("   Nested tab >>> "+nested_tabs["Title"])
+                print("   Nested tab >>> "+nested_tabs["Title"])
             print("-----------")
 
 
@@ -272,11 +285,35 @@ def addNestedTab(index,title,url):
         data = json.load(f)
         data[index]["nested"].append(nested_tab)
     return data
-    
+
+
+
+
+
+###################################################################
+###################################################################
+###        This function will close all opened tabs             ###
+###################################################################
+###################################################################
+def closeAllTabs():
+    with open("opened_tabs.json","r") as f:
+        data = json.load(f)
+        data.clear()
+        return data
 
 
 
         
+
+def saveCurrentState(path):
+    with open("opened_tabs.json","r") as f:
+        data = json.load(f)
+        with open(path, "w") as f:
+            json.dump(data, json_saved_state)
+
+
+
+
 
 ###################################################################
 ###################################################################
@@ -297,13 +334,13 @@ def main():
         nested_tab = []
         data_updates = openNewTab(title, url, nested_tab)
         updateJsonFile(data_updates)
-        print("New tab titled:",title,"\nwith the URL:",url,"\nWas successfully opened!")
+        print(">>> New tab titled:",title,"\n>>> with the URL:",url,"\n>>> Was successfully opened!")
 
     if choice == 2:  #2. Close Tab
         index = getIndex()
         updates = closeChosenTab(index)
         updateJsonFile(updates)
-        print("Tab was successfully closed!")
+        print(">>> Tab was successfully closed!")
 
     if choice == 3:  #3. Switch Tab
         index = getIndex()
@@ -318,6 +355,15 @@ def main():
         url = getURL()
         update = addNestedTab(index, title, url)
         updateJsonFile(update)
+        print(">>> Nested tab with title:",title,"\n>>> and with the URL:",url,"\n>>> Was successfully opened!")
+
+    if choice == 6:  #6. Clear All Tabs
+        update = closeAllTabs()
+        updateJsonFile(update)
+        print(">>> All tabs were successfully closed!")
+
+    if choice == 7:
+
 
 main()
 
