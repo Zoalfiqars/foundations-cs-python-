@@ -285,9 +285,9 @@ def printAllTitles():
         data = json.load(f)
         print("-----------")
         for i in data:
-            print(i["Title"])
+            print("Parent tab:",i["Title"])
             for nested_tabs in i["nested"]:
-                print("   Nested tab >>> "+nested_tabs["Title"])
+                print("\t\tNested tab >>> "+nested_tabs["Title"])
             print("-----------")
 
 
@@ -478,6 +478,10 @@ def main():
         print(">>> Data was saved successfully!")
         backToMenu()
 
+    #NOTE: the next solution (8) works on vs-code perfectly, as vs-code has access to the local machine.
+    # In Replit, when I specify a file path such as C:\Users\Chill\Desktop\011.json, Replit doesn't 
+    # directly save or access files on my local machine. Instead, it operates within its own isolated
+    # environment in the cloud. 
     if choice == 8:  #8. Import Tabs
         path = getPath()
         imported_list = importJsonFile(path)
