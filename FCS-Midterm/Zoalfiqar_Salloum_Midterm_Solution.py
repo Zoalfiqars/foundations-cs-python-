@@ -122,6 +122,7 @@ def getIndex():
 ###################################################################
 ###################################################################
 def getPath():
+    print("file path should be something like this:\n>>> C:\Users\'your pc name'\Desktop\01.json <<<")
     file_path = input("Please enter a file path : ")
     while ((".json" in file_path) == False):
         print(">>> Invalid Input! file path should end with /.json / <<<")
@@ -353,9 +354,13 @@ def importJsonFile(file_path):
             return data
         else:
             raise ValueError("File doesn't have a List")
-    except (FileNotFoundError, json.JSONDecodeError, ValueError) as x:
-        print(f"Error: {x}")
-        return None
+    except FileNotFoundError as x:
+        print(f"File not found: {x}")
+    except json.JSONDecodeError:
+        print("Invalid JSON format in the file")
+    except ValueError as x:
+        print(f"Invalid data in the file: {x}")
+    return
 
 
 
