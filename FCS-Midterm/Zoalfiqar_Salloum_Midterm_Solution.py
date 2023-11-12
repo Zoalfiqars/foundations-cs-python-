@@ -122,12 +122,12 @@ def getIndex():
 ###################################################################
 ###################################################################
 def getPath():
-    path = input("Please enter the path where you want to save your data: ")
-    print("Are you sure this is the path you want to save the data to?!\n"+">>> "+path+" <<<")
+    file_path = input("Please enter a file path : ")
+    print("Are you sure this is the correct file path?!\n"+">>> "+file_path+" <<<")
     print("1. YES\n2. NO")
     choice = input("Confirm: ")
     if choice == "1":
-        return path
+        return file_path
     elif choice == "2":
         return getPath()
     else:
@@ -320,11 +320,39 @@ def closeAllTabs():
 ###      saves the current state of the opened tabs to that file ##
 ###################################################################
 ###################################################################
-def saveCurrentState(path):
+def saveCurrentState(file_path):
     with open("opened_tabs.json","r") as f:
         data = json.load(f)
-        with open(path, "w") as f:
-            json.dump(data, json_saved_state)
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=4)
+
+
+
+
+
+#########################################################################################################
+#########################################################################################################
+###              This function takes a file path as a parameter and imports a JSON file.              ###
+###    This function also checks if the imported file is JSON and if it contains a list, otherwise    ###
+###                                      it returns an error.                                         ###     
+########################################       Used Links        ########################################
+###                    https://www.geeksforgeeks.org/read-json-file-using-python/                     ###
+### https://stackoverflow.com/questions/55599336/python-handling-exceptions-while-reading-json-files  ###
+###                   https://www.geeksforgeeks.org/json-parsing-errors-in-python/                    ###
+###                      https://www.geeksforgeeks.org/python-isinstance-method/                      ###
+#########################################################################################################
+#########################################################################################################
+def importJsonFile(file_path):
+    try:
+        with open(file_path) as f:
+            data = json.load(f)
+        if isinstance(data, list):
+            return data
+        else:
+            raise ValueError("File doesn't have a List")
+    except (FileNotFoundError, json.JSONDecodeError, ValueError) as x:
+        print(f"Error: {x}")
+        return None
 
 
 
@@ -377,9 +405,13 @@ def main():
         updateJsonFile(update)
         print(">>> All tabs were successfully closed!")
 
-    if choice == 7:
-        path = getPath()
-        saveCurrentState(path)
+    if choice == 7:  #7. Save Tabs
+        file_path = getPath()
+        saveCurrentState(file_path)
+        print(">>> Data was saved successfully!")
+
+    if choice == 8:  #8. Import Tabs
+        file_path = getPath()
 
 
 main()
