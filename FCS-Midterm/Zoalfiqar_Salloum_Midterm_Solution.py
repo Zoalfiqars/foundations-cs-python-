@@ -480,11 +480,16 @@ def main():
 
     if choice == 8:  #8. Import Tabs
         path = getPath()
-        imported_list = importJsonFile(path)       
-        updates = mergeLists(imported_list)
-        updateJsonFile(updates)
-        print(">>> Data was imported successfully!")
-        backToMenu()
+        imported_list = importJsonFile(path)
+        if (type(imported_list) is list ):
+            updates = mergeLists(imported_list)
+            updateJsonFile(updates)
+            print(">>> Data was imported successfully!")
+            backToMenu()
+        else:
+            print("Invalid data Type!")
+            backToMenu()
+        
 
     if choice == 9:
         print("###################################################################\n###################################################################")
