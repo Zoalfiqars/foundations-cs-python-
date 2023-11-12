@@ -116,14 +116,23 @@ def getIndex():
 
 ###################################################################
 ###################################################################
-########## This function will get the file path from the user
-### in order to be used later on to save the current state of
-### the software
+####    This function will get the file path from the user     ####
+###   in order to be used later on to save the current state of  ##
+###                          the software                       ###
 ###################################################################
 ###################################################################
 def getPath():
     path = input("Please enter the path where you want to save your data: ")
-
+    print("Are you sure this is the path you want to save the data to?!\n"+">>> "+path+" <<<")
+    print("1. YES\n2. NO")
+    choice = input("Confirm: ")
+    if choice == "1":
+        return path
+    elif choice == "2":
+        return getPath()
+    else:
+        print(">>> Invalid Input! <<<")
+        return getPath()
 
 
 
@@ -305,6 +314,12 @@ def closeAllTabs():
 
         
 
+###################################################################
+###################################################################
+###        This function takes a file path as a parameter and   ###
+###      saves the current state of the opened tabs to that file ##
+###################################################################
+###################################################################
 def saveCurrentState(path):
     with open("opened_tabs.json","r") as f:
         data = json.load(f)
@@ -363,6 +378,8 @@ def main():
         print(">>> All tabs were successfully closed!")
 
     if choice == 7:
+        path = getPath()
+        saveCurrentState(path)
 
 
 main()
