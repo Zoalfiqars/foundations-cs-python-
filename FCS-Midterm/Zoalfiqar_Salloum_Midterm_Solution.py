@@ -258,11 +258,26 @@ def printAllTitles():
 
 
 
+###################################################################
+###################################################################
+###      This function will use an index, title and url that    ###
+###    were entered by the user then make a new dictionary and  ###
+###    append it to the list inside of the dictionary with the  ###
+###                       provided index.                       ###
+###################################################################
+###################################################################
+def addNestedTab(index,title,url):
+    nested_tab = {"Title":title, "URL":url}
+    with open("opened_tabs.json","r") as f:
+        data = json.load(f)
+        data[index]["nested"].append(nested_tab)
+    return data
+    
 
 
 
         
-        
+
 ###################################################################
 ###################################################################
 ###                This is the Main Function.                   ###
@@ -297,7 +312,12 @@ def main():
     if choice == 4:  #4. Display All Tabs
         printAllTitles()
 
-
+    if choice == 5:  #5. Open Nested Tab
+        index = getIndex()
+        title = getTitle()
+        url = getURL()
+        update = addNestedTab(index, title, url)
+        updateJsonFile(update)
 
 main()
 
