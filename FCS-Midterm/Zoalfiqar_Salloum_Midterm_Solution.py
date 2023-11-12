@@ -395,7 +395,17 @@ def mergeLists(imported_list):
 ###         he/she wants to go back to menu or exit             ###
 ###################################################################
 ###################################################################
-
+def backToMenu():
+    print("------------")
+    user_input = input("1. Back\n2. Exit\nConfirm: ")
+    while (user_input != "1") and (user_input != "2"):
+        user_input = input("1. Back\n2. Exit\nConfirm: ")
+    if user_input == "1":
+        main()
+    elif user_input == "2":
+        print("###################################################################\n###################################################################")
+        print("\t>>> Thank You Mr. Georgio for Using ABTS <<<")
+        print("###################################################################\n###################################################################")
 
 
 
