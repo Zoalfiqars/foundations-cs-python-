@@ -10,7 +10,7 @@
 import json
 from bs4 import BeautifulSoup
 import requests
-
+import validators
 
 
 
@@ -66,11 +66,16 @@ def getTitle():
 ##  chose .startwith() method. Here is the link of the page:    ###
 ##    https://www.geeksforgeeks.org/python-check-url-string/     ##
 ###################################################################
+##  NOTE: I face some errors with the URL input so extended my   ##
+### research and found a library in python to validate a URL.   ###
+###      https://snyk.io/blog/secure-python-url-validation/     ###
+###################################################################
 ###################################################################
 def getURL():
-    url = input("Please enter a valid URL.\nNote: URL should start with 'http:', 'https:' or 'www.'\nType your URL here: ")
-    while (url.startswith("https:") != True) and (url.startswith("http:") != True) and (url.startswith("www.") != True):
-        url = input("Invalid URL!\nPlease enter a valid URL.\nNote: URL should start with 'http:', 'https:' or 'www.'\nType your URL here: ")
+    url = input("Please enter a valid URL.\nNote: URL should start with 'http://', 'https://' or 'www.'\nType your URL here: ")
+    validation = validators.url(url)
+    while not validation:
+        url = input("Please enter a valid URL.\nNote: URL should start with 'http://', 'https://' or 'www.'\nType your URL here: ")
     print("Are you sure that",url,"is the tab's URL?\n1. YES\n2. NO")
     confirm = input("Please type 1 or 2: ")
     while (confirm != "1") and (confirm != "2"):
