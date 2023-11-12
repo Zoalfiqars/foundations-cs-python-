@@ -141,6 +141,7 @@ def getPath():
     if choice == "1":
         return file_path
     elif choice == "2":
+        print("Try again!")
         return getPath()
     else:
         print(">>> Invalid Input! <<<")
@@ -478,14 +479,8 @@ def main():
         backToMenu()
 
     if choice == 8:  #8. Import Tabs
-        file_path = getPath()
-        imported_list = importJsonFile(file_path)
-        #even if the imported file data is not valid or the file doesn't exist, 
-        # the code keeps executing and passes the returned value to the next function
-        # causing an error. So this while loop down here is to prevent that.
-        while imported_list != list:
-            file_path = getPath()
-            imported_list = importJsonFile(file_path)
+        path = getPath()
+        imported_list = importJsonFile(path)       
         updates = mergeLists(imported_list)
         updateJsonFile(updates)
         print(">>> Data was imported successfully!")
