@@ -358,6 +358,18 @@ def importJsonFile(file_path):
 
 
 
+def mergeLists(imported_list):
+    with open("opened_tabs.json","r") as f:
+        data = json.load(f)
+        for i in imported_list:
+            data.append(i)
+        return data
+
+
+
+
+
+
 ###################################################################
 ###################################################################
 ###                This is the Main Function.                   ###
@@ -412,6 +424,8 @@ def main():
 
     if choice == 8:  #8. Import Tabs
         file_path = getPath()
+        imported_list = importJsonFile(file_path)
+
 
 
 main()
