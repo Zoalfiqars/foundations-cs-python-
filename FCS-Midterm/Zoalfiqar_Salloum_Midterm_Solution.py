@@ -122,7 +122,7 @@ def getIndex():
 ###################################################################
 ###################################################################
 def getPath():
-    print("file path should be something like this:\n>>> C:\Users\'your pc name'\Desktop\01.json <<<")
+    print("file path should be something like this.\n>>> (C:\\Users\\'your pc name'\\Desktop\\01.json) <<<")
     file_path = input("Please enter a file path : ")
     while ((".json" in file_path) == False):
         print(">>> Invalid Input! file path should end with /.json / <<<")
@@ -360,8 +360,7 @@ def importJsonFile(file_path):
         print("Invalid JSON format in the file")
     except ValueError as x:
         print(f"Invalid data in the file: {x}")
-    return
-
+    return 
 
 
 
@@ -441,11 +440,18 @@ def main():
     if choice == 8:  #8. Import Tabs
         file_path = getPath()
         imported_list = importJsonFile(file_path)
+        #even if the imported file data is not valid or the file doesn't exist, 
+        # the code keeps executing and passes the returned value to the next function
+        # causing an error. So this while loop down here is to prevent that.
+        while imported_list != list:
+            file_path = getPath()
+            imported_list = importJsonFile(file_path)
         updates = mergeLists(imported_list)
         updateJsonFile(updates)
         print(">>> Data was imported successfully!")
 
-
+    if choice == 9:
+        print(">>> Thanks for Using ABTS <<<")
 
 main()
 
