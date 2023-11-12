@@ -282,6 +282,7 @@ def displayTabContent(index):
 def printAllTitles():
     with open("opened_tabs.json", "r") as f:
         data = json.load(f)
+        print("-----------")
         for i in data:
             print(i["Title"])
             for nested_tabs in i["nested"]:
@@ -401,7 +402,7 @@ def mergeLists(imported_list):
 ###################################################################
 ###################################################################
 def backToMenu():
-    print("------------")
+    print("-----------")
     user_input = input("1. Back\n2. Exit\nConfirm: ")
     while (user_input != "1") and (user_input != "2"):
         user_input = input("1. Back\n2. Exit\nConfirm: ")
