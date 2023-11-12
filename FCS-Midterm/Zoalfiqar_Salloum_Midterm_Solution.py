@@ -385,6 +385,21 @@ def mergeLists(imported_list):
 
 
 
+def backToMenu():
+    print("------------")
+    user_input = input("1. Back\n2. Exit\nConfirm: ")
+    while (user_input != "1") and (user_input != "2"):
+        user_input = input("1. Back\n2. Exit\nConfirm: ")
+    if user_input == "1":
+        main()
+    elif user_input == "2":
+        print("Thanks for Using ABTS!")
+
+
+
+
+
+
 ###################################################################
 ###################################################################
 ###                This is the Main Function.                   ###
@@ -405,19 +420,23 @@ def main():
         data_updates = openNewTab(title, url, nested_tab)
         updateJsonFile(data_updates)
         print(">>> New tab titled:",title,"\n>>> with the URL:",url,"\n>>> Was successfully opened!")
+        backToMenu()
 
     if choice == 2:  #2. Close Tab
         index = getIndex()
         updates = closeChosenTab(index)
         updateJsonFile(updates)
         print(">>> Tab was successfully closed!")
+        backToMenu()
 
     if choice == 3:  #3. Switch Tab
         index = getIndex()
         displayTabContent(index)
+        backToMenu()
 
     if choice == 4:  #4. Display All Tabs
         printAllTitles()
+        backToMenu()
 
     if choice == 5:  #5. Open Nested Tab
         index = getIndex()
@@ -426,16 +445,19 @@ def main():
         update = addNestedTab(index, title, url)
         updateJsonFile(update)
         print(">>> Nested tab with title:",title,"\n>>> and with the URL:",url,"\n>>> Was successfully opened!")
+        backToMenu()
 
     if choice == 6:  #6. Clear All Tabs
         update = closeAllTabs()
         updateJsonFile(update)
         print(">>> All tabs were successfully closed!")
+        backToMenu()
 
     if choice == 7:  #7. Save Tabs
         file_path = getPath()
         saveCurrentState(file_path)
         print(">>> Data was saved successfully!")
+        backToMenu()
 
     if choice == 8:  #8. Import Tabs
         file_path = getPath()
@@ -449,6 +471,7 @@ def main():
         updates = mergeLists(imported_list)
         updateJsonFile(updates)
         print(">>> Data was imported successfully!")
+        backToMenu()
 
     if choice == 9:
         print(">>> Thanks for Using ABTS <<<")
