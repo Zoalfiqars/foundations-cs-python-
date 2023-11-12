@@ -21,7 +21,10 @@ import requests
 ###################################################################
 ###################################################################
 def displayMenu():
-    print("Welcome to ABTS.\nThe most Advanced Browser Tabs Simulation.\nHere is the Menu, please choose wisely:\n1. Open Tab\n2. Close Tab\n3. Switch Tab\n4. Display All Tabs\n5. Open Nested Tabs\n6. Clear All Tabs\n7. Save Tabs\n8. Import Tabs\n9. Exit ABTS")
+    print("###################################################################\n###################################################################")
+    print("###\t\t\tWelcome to ABTS!\t\t\t###")
+    print("###################################################################\n###################################################################")
+    print("The most Advanced Browser Tabs Simulation.\nHere is the Menu, please choose wisely:\n1. Open Tab\n2. Close Tab\n3. Switch Tab\n4. Display All Tabs\n5. Open Nested Tabs\n6. Clear All Tabs\n7. Save Tabs\n8. Import Tabs\n9. Exit ABTS")
     choice = input("Please enter your choice's number: ")
     while (choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7") and (choice != "8") and (choice != "9"):
         choice = input("Invalid input! Please enter one of the numbers shown: ")
@@ -384,7 +387,12 @@ def mergeLists(imported_list):
 
 
 
-
+###################################################################
+###################################################################
+###              This function asks the user if                 ###
+###         he/she wants to go back to menu or exit             ###
+###################################################################
+###################################################################
 def backToMenu():
     print("------------")
     user_input = input("1. Back\n2. Exit\nConfirm: ")
@@ -474,7 +482,9 @@ def main():
         backToMenu()
 
     if choice == 9:
-        print(">>> Thanks for Using ABTS <<<")
+        print("###################################################################\n###################################################################")
+        print("\t>>> Thank You Mr. Georgio for Using ABTS <<<")
+        print("###################################################################\n###################################################################")
 
 main()
 
