@@ -123,6 +123,9 @@ def getIndex():
 ###################################################################
 def getPath():
     file_path = input("Please enter a file path : ")
+    while ((".json" in file_path) == False):
+        print(">>> Invalid Input! file path should end with /.json / <<<")
+        file_path = input("Please try again: ")
     print("Are you sure this is the correct file path?!\n"+">>> "+file_path+" <<<")
     print("1. YES\n2. NO")
     choice = input("Confirm: ")
@@ -316,8 +319,8 @@ def closeAllTabs():
 
 ###################################################################
 ###################################################################
-###        This function takes a file path as a parameter and   ###
-###      saves the current state of the opened tabs to that file ##
+###     This function takes a file path as a parameter and      ###
+###   saves the current state of the opened tabs to that file   ###
 ###################################################################
 ###################################################################
 def saveCurrentState(file_path):
@@ -358,6 +361,14 @@ def importJsonFile(file_path):
 
 
 
+#####################################################################
+#####################################################################
+###     This function takes a user's list as a parameter and      ###
+###   imports the list from our JSON file, then merges them both  ###
+###     in one list and returns it to be uploaded later on with   ###
+###                      another function                         ###
+#####################################################################
+#####################################################################
 def mergeLists(imported_list):
     with open("opened_tabs.json","r") as f:
         data = json.load(f)
@@ -425,6 +436,9 @@ def main():
     if choice == 8:  #8. Import Tabs
         file_path = getPath()
         imported_list = importJsonFile(file_path)
+        updates = mergeLists(imported_list)
+        updateJsonFile(updates)
+        print(">>> Data was imported successfully!")
 
 
 
