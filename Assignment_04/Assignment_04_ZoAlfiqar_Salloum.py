@@ -81,12 +81,30 @@ class PriorityQueue:
             print("No tasks to be marked as completed!")
 
         else:
-            print("Task",self.head.description,"was marked as completed!")
+            print("Task",self.head.description,"was marked as completed and moved to history!")
             temp = self.head
+            temp.setCompleted(True)
             self.head = self.head.ref
             temp.ref = None
             self.size -= 1
-            return temp
+            return temp.ID, temp.description, temp.priority, temp.completed
+        
+
+
+
+class History:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def push(self, ID, description, priority, completed):
+        task_completed = NewTask(ID, description, priority, completed)
+        task_completed.ref = self.head
+        self.head = task_completed
+        self.size += 1
+
+
+
                     
 
     def getTaskWithID(self):
@@ -111,12 +129,14 @@ class PriorityQueue:
 
 
 tasks = PriorityQueue()
+completed_tasks = History()
 
 def addNewTask():
     description = input("Please enter the task description: ")
     priority = input("Please enter an integer value representing the priority of the task, higher values indicate higher priority: ")
     while not (priority.isnumeric() is True) or (int(priority) >= 0 is True):
         priority = input("Invalid input! Please enter an integer value bigger than 0: ")
+    priority = int(priority)
     id = tasks.createId()
 
     tasks.enqueue(id, description, priority, completed=False)
@@ -148,10 +168,13 @@ def main():
     #Marking the highest priority task as completed and putting it in the task history.
     if choice == 3:
        marked_as_completed = tasks.dequeue()
-       id = marked_as_completed.getID()
-       description = marked_as_completed.getDescription()
-       priority = marked_as_completed.getPriority()
        
+       id = marked_as_completed[0]
+       description = marked_as_completed[1]
+       priority = marked_as_completed[2]
+       completed = marked_as_completed[3]
+       completed_tasks.push(id, description, priority, completed)
+
 
 
 
