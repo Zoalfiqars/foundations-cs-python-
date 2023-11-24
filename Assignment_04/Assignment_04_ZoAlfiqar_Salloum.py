@@ -140,7 +140,7 @@ class History:
         if self.size == 0:
             print("No completed tasks!")
         else:
-            print("Last completed task:\nTask priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
+            print("Last completed task:\nTask priority: ", self.head.priority, "\nTask description: ", self.head.description, "\n>>>", "Completed")
 
 
     def displayHistory(self):
@@ -149,11 +149,11 @@ class History:
         if self.size == 0:
             print("No Completed tasks to show!")
         elif self.size == 1:
-            print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
+            print("Task priority: ", self.head.priority, ".Task description: ", self.head.description, ">>>", "Completed")
         else:
             temp = self.head
             while(temp is not None):
-                print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
+                print("Task priority: ", self.head.priority, ".Task description: ", self.head.description, ">>>", "Completed")
                 temp = temp.ref
 
 
@@ -227,7 +227,7 @@ def main():
 
 
     #Displaying the last completed task.
-    if choice == 7:
+    if choice == 6:
         completed_tasks.showLastCompletedTask()
 
 
