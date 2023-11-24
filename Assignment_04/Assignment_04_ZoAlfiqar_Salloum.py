@@ -6,6 +6,41 @@
 ###########################################
 ###########################################
 
+class NewTask:
+    def __init__(self, ID, description, priority, completed = False):
+        self.ID = ID
+        self.description = description
+        self.priority = priority
+        self.completed = completed
+        self.ref = None
+
+    def getID(self):
+        return self.ID
+    def getDescription(self):
+        return self.description
+    def getPriority(self):
+        return self.priority
+    def getCompleted(self):
+        return self.completed
+    
+    def setID(self, new_ID):
+        self.ID = new_ID
+    def setDescription(self, new_description):
+        self.description = new_description
+    def setPriority(self, new_priority):
+        self.priority = new_priority
+    def setCompleted(self, new_completed):
+        self.completed = new_completed
+
+
+class PriorityQueue:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+        
+
+
+
 
 
 
