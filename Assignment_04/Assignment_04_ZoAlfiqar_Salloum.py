@@ -37,6 +37,56 @@ class PriorityQueue:
     def __init__(self):
         self.head = None
         self.size = 0
+
+    def Id(self, id=0):
+        temp = self.head
+        if temp == None:
+            id = 1
+            return id
+        else:
+            while(temp is not None):
+                temp = temp.ref
+                id += 1
+            id += 1
+            return id
+    
+    def enqueue(self,new_task):
+        new_node = NewTask(new_task)
+
+        if(self.size == 0):
+            self.head = new_node
+            self.size += 1
+            print("Task was successfully saved!")
+
+        else:
+            if(new_node.priority > self.head.priority):
+                new_node.ref = self.head
+                self.head = new_node
+                size += 1
+                print("Task was successfully saved!")
+
+            else:
+                temp = self.head
+                prev = temp
+                while((temp is not None) and (temp.priority >= new_node.priority)):
+                    prev = temp
+                    temp = temp.ref
+                prev.ref = new_node
+                new_node.ref = temp
+                self.size += 1
+
+    def dequeue(self):
+        if (self.size == 0):
+            print("No tasks to be marked as completed!")
+
+        else:
+            print("Task",self.head.description,"was marked as completed!")
+            temp = self.head
+            self.head = self.head.ref
+            temp.ref = None
+            self.size -= 1
+            return temp
+                    
         
 
 
