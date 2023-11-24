@@ -90,6 +90,22 @@ class PriorityQueue:
             return temp.ID, temp.description, temp.priority, temp.completed
         
 
+    def displayTasks(self):
+        print("Incomplete tasks:")
+        if self.size == 0:
+            print("No tasks to show!")
+        elif self.size == 1:
+            print(self.head.ID, ". ", self.head.description, ">>>", self.head.completed)
+        else:
+            temp = self.head
+            while(temp is not None):
+                print(self.head.ID+". ", self.head.description, ">>>", self.head.completed)
+                temp = temp.ref
+
+
+
+        
+
 
 
 class History:
@@ -122,6 +138,21 @@ class History:
             return ("No task was found!")
         
         
+
+    def displayHistory(self):
+        print("Completed tasks:")
+        temp = self.head
+        if self.size == 0:
+            print("No Completed tasks to show!")
+        elif self.size == 1:
+            print(self.head.ID, ". ", self.head.description, ">>>", self.head.completed)
+        else:
+            temp = self.head
+            while(temp is not None):
+                print(self.head.ID+". ", self.head.description, ">>>", self.head.completed)
+                temp = temp.ref
+
+
         
 
 
@@ -174,6 +205,11 @@ def main():
        priority = marked_as_completed[2]
        completed = marked_as_completed[3]
        completed_tasks.push(id, description, priority, completed)
+
+
+    #Displaying all tasks in order of priority.
+    if choice == 4:
+
 
 
 
