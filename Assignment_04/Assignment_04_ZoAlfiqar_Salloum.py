@@ -88,6 +88,22 @@ class PriorityQueue:
             self.size -= 1
             return temp
                     
+
+    def getTaskWithID(self):
+        id = input("Please enter the task id: ")
+        while (id.isnumeric() != True) or ((int(id) >= 0) != True):
+            id = input("Invalid input! Please enter a valid id: ")
+        id = int(id)
+        temp = self.head
+        while temp is not None:
+                if temp.getID() == id:
+                    return temp.getDescription()
+                else:
+                    temp = temp.ref
+        if temp == None:
+            return ("No task was found!")
+        
+        
         
 
 
@@ -99,7 +115,7 @@ tasks = PriorityQueue()
 def addNewTask():
     description = input("Please enter the task description: ")
     priority = input("Please enter an integer value representing the priority of the task, higher values indicate higher priority: ")
-    while not (priority.isnumeric() is True) or (int(priority) > 0 is True):
+    while not (priority.isnumeric() is True) or (int(priority) >= 0 is True):
         priority = input("Invalid input! Please enter an integer value bigger than 0: ")
     id = tasks.createId()
 
@@ -122,7 +138,21 @@ def main():
     #Adding a new task to the task manager.
     if choice == 1:
         addNewTask()
-        
+        main()
+
+    #Getting a task from the queue given a task id
+    if choice == 2:
+        print(tasks.getTaskWithID())
+        main()
+
+    #Marking the highest priority task as completed and putting it in the task history.
+    if choice == 3:
+       marked_as_completed = tasks.dequeue()
+       id = marked_as_completed.getID()
+       description = marked_as_completed.getDescription()
+       priority = marked_as_completed.getPriority()
+       
+
 
 
 main()
