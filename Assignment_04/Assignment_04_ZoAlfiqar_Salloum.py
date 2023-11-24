@@ -7,7 +7,7 @@
 ###########################################
 
 class NewTask:
-    def __init__(self, ID, description, priority, completed = False):
+    def __init__(self, ID, description, priority, completed):
         self.ID = ID
         self.description = description
         self.priority = priority
@@ -38,20 +38,21 @@ class PriorityQueue:
         self.head = None
         self.size = 0
 
-    def Id(self, id=0):
+    def createId(self):
         temp = self.head
         if temp == None:
             id = 1
             return id
         else:
+            id = 0
             while(temp is not None):
                 temp = temp.ref
                 id += 1
             id += 1
             return id
     
-    def enqueue(self,new_task):
-        new_node = NewTask(new_task)
+    def enqueue(self, ID, description, priority, completed):
+        new_node = NewTask(ID, description, priority, completed)
 
         if(self.size == 0):
             self.head = new_node
@@ -93,10 +94,16 @@ class PriorityQueue:
 
 
 
+tasks = PriorityQueue()
 
 def addNewTask():
     description = input("Please enter the task description: ")
     priority = input("Please enter an integer value representing the priority of the task, higher values indicate higher priority: ")
+    while not (priority.isnumeric() is True) or (int(priority) > 0 is True):
+        priority = input("Invalid input! Please enter an integer value bigger than 0: ")
+    id = tasks.createId()
+
+    tasks.enqueue(id, description, priority, completed=False)
 
 
 
@@ -106,6 +113,7 @@ def displayMenu():
     choice = input("Please enter your choice's number: ")
     while ((choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7")):
         choice = input("Invalid input! Please enter your choice's number: ")
+    choice = int(choice)
     return choice
 
 def main():
@@ -113,7 +121,11 @@ def main():
 
     #Adding a new task to the task manager.
     if choice == 1:
+        addNewTask()
         
+
+
+main()
 
 
 
