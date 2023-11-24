@@ -33,6 +33,10 @@ class NewTask:
         self.completed = new_completed
 
 
+
+
+
+
 class PriorityQueue:
     def __init__(self):
         self.head = None
@@ -124,6 +128,9 @@ class PriorityQueue:
 
 
 
+
+
+
 class History:
     def __init__(self):
         self.head = None
@@ -163,6 +170,8 @@ class History:
 
 
 
+
+
 tasks = PriorityQueue()
 completed_tasks = History()
 
@@ -178,7 +187,6 @@ def addNewTask():
 
 
 
-
 def displayMenu():
     print("##############################\n  Welcome to the Task Manager\n##############################\n1. Add a new task.\n2. Show a task.\n3. Mark the highest priority task as completed\n4. Display all tasks\n5. Display tasks that are not completed.\n6. Display the last completed task.\n7. Exit\n--------------------\n")
     choice = input("Please enter your choice's number: ")
@@ -186,6 +194,12 @@ def displayMenu():
         choice = input("Invalid input! Please enter your choice's number: ")
     choice = int(choice)
     return choice
+
+
+
+
+
+
 
 def main():
     choice = displayMenu()
@@ -224,11 +238,13 @@ def main():
     #Displaying only the tasks that are not completed.
     if choice == 5:
         tasks.displayTasks()
+        main()
 
 
     #Displaying the last completed task.
     if choice == 6:
         completed_tasks.showLastCompletedTask()
+        main()
 
 
     if choice == 7:
