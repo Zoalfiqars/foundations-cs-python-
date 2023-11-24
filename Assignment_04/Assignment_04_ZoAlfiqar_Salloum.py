@@ -72,13 +72,14 @@ class PriorityQueue:
                 while((temp is not None) and (temp.priority >= new_node.priority)):
                     prev = temp
                     temp = temp.ref
+
                 prev.ref = new_node
                 new_node.ref = temp
                 self.size += 1
+                print("Task was successfully saved!")
 
     def dequeue(self):
         if (self.size == 0):
-            print("No tasks to be marked as completed!")
             return -99
 
         else:
@@ -104,6 +105,20 @@ class PriorityQueue:
                 temp = temp.ref
 
 
+    def getTaskWithID(self):
+        id = input("Please enter the task id: ")
+        while (id.isnumeric() != True) or ((int(id) >= 0) != True):
+            id = input("Invalid input! Please enter a valid id: ")
+        id = int(id)
+        temp = self.head
+        while temp is not None:
+                if temp.getID() == id:
+                    return temp.getDescription()
+                else:
+                    temp = temp.ref
+        if temp == None:
+            return ("No task was found!")
+
 
         
 
@@ -119,26 +134,14 @@ class History:
         task_completed.ref = self.head
         self.head = task_completed
         self.size += 1
-
-
-
-                    
-
-    def getTaskWithID(self):
-        id = input("Please enter the task id: ")
-        while (id.isnumeric() != True) or ((int(id) >= 0) != True):
-            id = input("Invalid input! Please enter a valid id: ")
-        id = int(id)
-        temp = self.head
-        while temp is not None:
-                if temp.getID() == id:
-                    return temp.getDescription()
-                else:
-                    temp = temp.ref
-        if temp == None:
-            return ("No task was found!")
         
-        
+
+    def showLastCompletedTask(self):
+        if self.size == 0:
+            print("No completed tasks!")
+        else:
+            print("Last completed task:\nTask priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
+
 
     def displayHistory(self):
         print("Completed tasks:")
@@ -146,11 +149,11 @@ class History:
         if self.size == 0:
             print("No Completed tasks to show!")
         elif self.size == 1:
-            print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
+            print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
         else:
             temp = self.head
             while(temp is not None):
-                print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
+                print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", "Completed")
                 temp = temp.ref
 
 
@@ -221,6 +224,11 @@ def main():
     #Displaying only the tasks that are not completed.
     if choice == 5:
         tasks.displayTasks()
+
+
+    #Displaying the last completed task.
+    if choice == 7:
+        completed_tasks.showLastCompletedTask()
 
 
     if choice == 7:
