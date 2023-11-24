@@ -63,7 +63,7 @@ class PriorityQueue:
             if(new_node.priority > self.head.priority):
                 new_node.ref = self.head
                 self.head = new_node
-                size += 1
+                self.size += 1
                 print("Task was successfully saved!")
 
             else:
@@ -79,6 +79,7 @@ class PriorityQueue:
     def dequeue(self):
         if (self.size == 0):
             print("No tasks to be marked as completed!")
+            return -99
 
         else:
             print("Task",self.head.description,"was marked as completed and moved to history!")
@@ -95,11 +96,11 @@ class PriorityQueue:
         if self.size == 0:
             print("No tasks to show!")
         elif self.size == 1:
-            print(self.head.ID, ". ", self.head.description, ">>>", self.head.completed)
+            print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
         else:
             temp = self.head
             while(temp is not None):
-                print(self.head.ID+". ", self.head.description, ">>>", self.head.completed)
+                print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
                 temp = temp.ref
 
 
@@ -145,11 +146,11 @@ class History:
         if self.size == 0:
             print("No Completed tasks to show!")
         elif self.size == 1:
-            print(self.head.ID, ". ", self.head.description, ">>>", self.head.completed)
+            print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
         else:
             temp = self.head
             while(temp is not None):
-                print(self.head.ID+". ", self.head.description, ">>>", self.head.completed)
+                print("Task priority:", self.head.priority, "Task description:", self.head.description, ">>>", self.head.completed)
                 temp = temp.ref
 
 
@@ -165,7 +166,7 @@ completed_tasks = History()
 def addNewTask():
     description = input("Please enter the task description: ")
     priority = input("Please enter an integer value representing the priority of the task, higher values indicate higher priority: ")
-    while not (priority.isnumeric() is True) or (int(priority) >= 0 is True):
+    while not (priority.isnumeric() is True) or (int(priority) >= 0 == True):
         priority = input("Invalid input! Please enter an integer value bigger than 0: ")
     priority = int(priority)
     id = tasks.createId()
@@ -176,7 +177,7 @@ def addNewTask():
 
 
 def displayMenu():
-    print("Welcome to the Task Manager!\n1. Add a new task.\n2. Show a task.\n3. Mark the highest priority task as completed\n4. Display all tasks\n5. Display tasks that are not completed.\n6. Display the last completed task.\n7. Exit")
+    print("##############################\n  Welcome to the Task Manager\n##############################\n1. Add a new task.\n2. Show a task.\n3. Mark the highest priority task as completed\n4. Display all tasks\n5. Display tasks that are not completed.\n6. Display the last completed task.\n7. Exit\n--------------------\n")
     choice = input("Please enter your choice's number: ")
     while ((choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7")):
         choice = input("Invalid input! Please enter your choice's number: ")
@@ -199,20 +200,31 @@ def main():
     #Marking the highest priority task as completed and putting it in the task history.
     if choice == 3:
        marked_as_completed = tasks.dequeue()
-       
-       id = marked_as_completed[0]
-       description = marked_as_completed[1]
-       priority = marked_as_completed[2]
-       completed = marked_as_completed[3]
-       completed_tasks.push(id, description, priority, completed)
+       if marked_as_completed == -99:
+           print("No tasks to be marked as completed!")
+       else:
+        id = marked_as_completed[0]
+        description = marked_as_completed[1]
+        priority = marked_as_completed[2]
+        completed = marked_as_completed[3]
+        completed_tasks.push(id, description, priority, completed)
+        main()
 
 
     #Displaying all tasks in order of priority.
     if choice == 4:
+        tasks.displayTasks()
+        completed_tasks.displayHistory()
+        main()
 
 
+    #Displaying only the tasks that are not completed.
+    if choice == 5:
+        tasks.displayTasks()
 
 
+    if choice == 7:
+        print("Thanks for using my task manager.")
 
 main()
 
