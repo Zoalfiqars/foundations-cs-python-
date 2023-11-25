@@ -1,7 +1,7 @@
 ######################################
 ########### Assignment_03 ############
 ######################################
-
+import math
 # You need to simulate student data by creating a list of dictionaries. Each dictionary represents a
 # student's information with the following fields:
 # • 'ID' (integer): The student's unique identifier.
@@ -230,6 +230,19 @@ def removeStudent(student_data, student_id):
          print("Student was not found.")
    print(student_data)
 
+
+def calculateAverageGPA():
+   gpas = []
+   for i in student_data:
+      gpas.append(i["GPA"])
+   list_sum = sum(gpas)
+   avr = list_sum / (len(gpas))
+   avr = round(avr, 2)
+   print("The average GPA is:", avr)
+
+
+
+
 #######################
 #### Main Function ####
 #######################
@@ -285,5 +298,8 @@ def Main():
       student_id = input("Invalid ID input, please enter a positive integer: ")
      student_id = int(student_id)
      removeStudent(student_data, student_id)
+
+  if choice == 7:
+     calculateAverageGPA()
 Main()
 
