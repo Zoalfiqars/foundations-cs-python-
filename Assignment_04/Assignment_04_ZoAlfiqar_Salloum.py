@@ -101,11 +101,11 @@ class PriorityQueue:
         if self.size == 0:
             print(">>> No tasks to show!\n")
         elif self.size == 1:
-            print(">>> Task ID:", temp.ID, "Task priority:", temp.priority, "Task description:", temp.description, ">>> Not completed")
+            print(">>> Task ID:", temp.ID, ".Task priority:", temp.priority, ".Task description:", temp.description, ">>> Not completed\n")
         else:
             temp = self.head
             while(temp is not None):
-                print(">>> Task ID:", temp.ID, "Task priority:", temp.priority, "Task description:", temp.description, ">>> Not completed")
+                print(">>> Task ID:", temp.ID, ".Task priority:", temp.priority, ".Task description:", temp.description, ">>> Not completed\n")
                 temp = temp.ref
 
 
@@ -147,7 +147,7 @@ class History:
         if self.size == 0:
             print(">>> No completed tasks!\n")
         else:
-            print("Last completed task:\nTask priority: ", self.head.priority, "\nTask description: ", self.head.description, "\n>>>", "Completed\n")
+            print("Last completed task:\nTask priority:", self.head.priority, "\n.Task description:", self.head.description, "\n>>>", "Completed\n")
 
 
     def displayHistory(self):
@@ -185,7 +185,7 @@ def addNewTask():
 
 
 def displayMenu():
-    print("-----------------------------\n Welcome to the Task Manager\n-----------------------------\n1. Add a new task.\n2. Show a task.\n3. Mark the highest priority task as completed\n4. Display all tasks\n5. Display tasks that are not completed.\n6. Display the last completed task.\n7. Exit\n--------------------\n")
+    print("-----------------------------\n Welcome to the Task Manager\n-----------------------------\n1. Add a new task.\n2. Show a task.\n3. Mark the highest priority task as completed\n4. Display all tasks\n5. Display tasks that are not completed.\n6. Display the last completed task.\n7. Exit\n--------------------")
     choice = input("Please enter your choice's number: ")
     while ((choice != "1") and (choice != "2") and (choice != "3") and (choice != "4") and (choice != "5") and (choice != "6") and (choice != "7")):
         choice = input(">>> Invalid input! Please enter your choice's number: ")
@@ -216,6 +216,7 @@ def main():
        marked_as_completed = tasks.dequeue()
        if marked_as_completed == -99:
            print(">>> No tasks to be marked as completed!\n")
+           main()
        else:
         id = marked_as_completed[0]
         description = marked_as_completed[1]
