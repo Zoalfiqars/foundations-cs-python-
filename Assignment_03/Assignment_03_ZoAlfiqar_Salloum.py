@@ -51,7 +51,7 @@ student_data = [
   {"ID":9, "Name":"Yazan", "Age":21, "Major":"Psychology", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8},
   {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4},
   {"ID":13, "Name":"Ali", "Age":19, "Major":"Mathematics", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Psychology", "GPA":3.1},
-  {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
+  {"ID":15, "Name":"Kareem", "Age":20, "Major":"English", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4}]
 
 student_data02 = [
   {"ID": 1, "Name":"Ali", "Age":21, "Major":"Art", "GPA":3.7}, {"ID":2, "Name":"Ahmad", "Age":21, "Major":"History", "GPA":3.6}, 
@@ -61,7 +61,7 @@ student_data02 = [
   {"ID":9, "Name":"Yazan", "Age":21, "Major":"Music", "GPA":3.4}, {"ID":10, "Name":"Ola", "Age":20, "Major":"History", "GPA":2.8},
   {"ID":11, "Name":"Rida", "Age":22, "Major":"Engineering", "GPA":3.3}, {"ID":12, "Name":"Hasan", "Age":22, "Major":"Computer Science", "GPA":3.4},
   {"ID":13, "Name":"Ali", "Age":19, "Major":"Art", "GPA":3.7}, {"ID":14, "Name":"Hasan", "Age":23, "Major":"Music", "GPA":3.1},
-  {"ID":15, "Name":"Kareem", "Age":20, "Major":"Arabic", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4.9}]
+  {"ID":15, "Name":"Kareem", "Age":20, "Major":"Arabic", "GPA":3.7}, {"ID":16, "Name":"Zoalfiqar", "Age":33, "Major":"Computer Science", "GPA":4}]
 
 new_student = {}
 
@@ -242,6 +242,16 @@ def calculateAverageGPA():
 
 
 
+def topPerformers(num):
+   ordered_gpa = sorted(student_data, key=lambda x:x["GPA"], reverse=True)
+   top_students = ()
+   for i in range(min(num, len(ordered_gpa))):
+      top_students += (ordered_gpa[i],)
+   return top_students
+
+   
+
+
 
 #######################
 #### Main Function ####
@@ -301,5 +311,8 @@ def Main():
 
   if choice == 7:
      calculateAverageGPA()
+
+  if choice == 8:
+     print(topPerformers(5))
 Main()
 
