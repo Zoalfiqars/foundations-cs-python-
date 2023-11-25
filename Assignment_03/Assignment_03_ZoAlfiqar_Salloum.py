@@ -242,7 +242,11 @@ def calculateAverageGPA():
 
 
 
-def topPerformers(num):
+def topPerformers():
+   num = input("Please enter the number of the top students you want: ")
+   while (num.isnumeric() is not True) or ((int(num) > 0) is not True):
+      num = input("Invalid input! Please enter the number of the top students you want: ")
+   num = int(num)
    ordered_gpa = sorted(student_data, key=lambda x:x["GPA"], reverse=True)
    top_students = ()
    for i in range(min(num, len(ordered_gpa))):
@@ -309,10 +313,13 @@ def Main():
      student_id = int(student_id)
      removeStudent(student_data, student_id)
 
-  if choice == 7:
+  if choice == 7:  #7. Calculate Average GPA
      calculateAverageGPA()
 
-  if choice == 8:
-     print(topPerformers(5))
+  if choice == 8:  #8. Get Top Performers
+     print(topPerformers())
+
+  if choice == 9:
+     print("Thanks for using my software!")
 Main()
 
