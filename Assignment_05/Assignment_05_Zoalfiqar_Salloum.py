@@ -4,7 +4,46 @@
 ###########################################
 ###########################################
 
+class NewUsername:
+    def __init__(self, username):
+        self.username = username
+        self.user_friends = []
+        self.ref = None
 
+    def getUsername(self):
+        return self.username
+    
+    def getRef(self):
+        return self.ref
+    
+    def setUsername(self, new_username):
+        self.username = new_username
+    
+    def setRef(self, new_ref):
+        self.ref = new_ref
+
+
+class FriendList:
+    def __init__(self):
+        self.platform_users = {}
+        self.list_of_connections = []
+        self.head = None
+        self.size = 0
+
+    def addNewUser(self, new_user):
+        if new_user not in self.platform_users:
+            new_user = NewUsername(new_user)
+            self.platform_users[new_user] = len(self.list_of_connections)
+            self.list_of_connections.append(new_user.user_friends)
+    
+        for key in self.platform_users:
+            print(new_user.username)
+        print(self.list_of_connections)
+
+
+fl = FriendList()
+fl.addNewUser("Ali")
+    
 
 
 
