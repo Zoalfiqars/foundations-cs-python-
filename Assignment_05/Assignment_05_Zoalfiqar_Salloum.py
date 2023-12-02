@@ -64,17 +64,37 @@ class AdjacencyList:
 
 
 
+
+def checkIfUserInPlatform(username_num):
+    if username_num == 1:
+        username_01 = input("Please enter the first username: ")
+        while not ((8 <= len(username_01) <= 25) is True):
+            username_01 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
+        while not (username_01 in platform_users):
+                print(">>> Error: Username was not found! please try a different one.")
+                return checkIfUserInPlatform(1)
+        return username_01
+    elif username_num == 2:
+        username_02 = input("Please enter the second username: ")
+        while not ((8 <= len(username_02) <= 25) is True):
+            username_02 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
+        while not (username_02 in platform_users):
+            print(">>> Error: Username was not found! please try a different one.")
+            return checkIfUserInPlatform(2)
+        return username_02
+
+
 # This function gets the new username from the user as an input, validates it, checks if the it already exists in the platform
 # then if it is new, it adds the new username to the dictionary and gives it a value.
 # The value will be used later on as the index of the linked list that saves the user's connections (Friends)
-def getUserInput():
+def addNewUserToPlatform():
     username = input("Username should be 8 to 25 characters long, and can only contain these characters (_ . %).\nPlease enter a unique user name: ")
     pattern = r'^[a-zA-Z0-9_.%]+$'
     while not ( (re.match(pattern,username) is True) or ((8 <= len(username) <= 25) is True) ):
         username = input("Invalid username!\nNote: Username should be between 8 and 25 characters and can only contain these characters (_ .).\nPlease enter a unique user name: ")
     while (username in platform_users):
             print(">>> Error: Username already used! please try a different one.")
-            return getUserInput()
+            return addNewUserToPlatform()
     platform_users[username] = len(platform_users)
     print(f"'{username}' was successfully added to the platform!")
     print(platform_users)
@@ -149,10 +169,11 @@ def displayMenu():
 
 
 def main():
+    platform_linked_lists = AdjacencyList()
     choice = displayMenu()
 
     if choice == 1:
-        username = getUserInput()
+        username = addNewUserToPlatform()
 
 
     if choice == 2:
@@ -160,7 +181,14 @@ def main():
 
 
     if choice == 3:
-         
+         user_01 = checkIfUserInPlatform(1)
+         user_02 = checkIfUserInPlatform(2)
+         while(user_01 == user_02):
+              print("You can't send a request from a username to itself!\nPlease try again!")
+              user_01 = checkIfUserInPlatform(1)
+              user_02 = checkIfUserInPlatform(2)
+         print(user_01, user_02)
+
 
 
 
