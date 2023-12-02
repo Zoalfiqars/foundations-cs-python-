@@ -3,47 +3,61 @@
 ########   Social Media Platform  #########
 ###########################################
 ###########################################
-
-class NewUsername:
-    def __init__(self, username):
-        self.username = username
-        self.user_friends = []
-        self.ref = None
-
-    def getUsername(self):
-        return self.username
-    
-    def getRef(self):
-        return self.ref
-    
-    def setUsername(self, new_username):
-        self.username = new_username
-    
-    def setRef(self, new_ref):
-        self.ref = new_ref
+import re
 
 
-class FriendList:
-    def __init__(self):
-        self.platform_users = {}
-        self.list_of_connections = []
-        self.head = None
-        self.size = 0
-
-    def addNewUser(self, new_user):
-        if new_user not in self.platform_users:
-            new_user = NewUsername(new_user)
-            self.platform_users[new_user] = len(self.list_of_connections)
-            self.list_of_connections.append(new_user.user_friends)
-    
-        for key in self.platform_users:
-            print(new_user.username)
-        print(self.list_of_connections)
+platform_users = {}
 
 
-fl = FriendList()
-fl.addNewUser("Ali")
-    
+# This function gets the new username from the user as an input, validates it, checks if the it already exists in the platform
+# then if it is new, it adds the new username to the dictionary and gives it a value.
+# The value will be used later on as the index of the linked list that saves the user's connections (Friends)
+def getUserInput():
+    username = input("Username should be 8 to 25 characters long, and can only contain these characters (_ . %).\nPlease enter a unique user name: ")
+    pattern = r'^[a-zA-Z0-9_.%]+$'
+    while not ( (re.match(pattern,username) is True) or ((8 <= len(username) <= 25) is True) ):
+        username = input("Invalid username!\nNote: Username should be between 8 and 25 characters and can only contain these characters (_ .).\nPlease enter a unique user name: ")
+    while (username in platform_users):
+            print(">>> Error: Username already used! please try a different one.")
+            return getUserInput()
+    platform_users[username] = len(platform_users)
+    print(f"'{username}' was successfully added to the platform!")
+    print(platform_users)
+
+
+
+# This function takes a username from the user as an input and checks if it is in the database (dictionary),
+# then it removes the user but before that it changes the values of the dictionary if it is bigger than the value of the deleted user
+def removeUserFromPlatform():
+    username = input("Please enter the username you want to remove: ")
+    while not ((8 <= len(username) <= 25) is True):
+        username = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
+    while not (username in platform_users):
+            print(">>> Error: Username was not found! please try a different one.")
+            return removeUserFromPlatform()
+    temp = platform_users[username]
+    del platform_users[username]
+    print(f"'{username}' was successfully removed from the platform!")
+    for key,value in platform_users.items():
+         if value > temp:
+              platform_users[key] = value - 1
+    print(platform_users)
+
+
+def viewPlatformUsers():
+     if len(platform_users) == 0:
+          print("-----------------------------")
+          print("No users to show, the platform is empty!")
+          print("-----------------------------")
+     else:
+          num = 1
+          print("-----------------------------")
+          print("Users of the platforms are:")
+          for key in platform_users:
+                print(f"{num}. {key}")
+                num += 1
+          print("-----------------------------")
+
 
 
 
@@ -74,3 +88,33 @@ def displayMenu():
     choice = int(choice)
     return choice
 
+
+
+def main():
+    choice = displayMenu()
+
+    if choice == 1:
+        username = getUserInput()
+
+
+    if choice == 2:
+         removeUserFromPlatform()
+
+
+
+
+
+
+
+
+
+
+    if choice == 6:
+         viewPlatformUsers()
+         main()
+
+
+    if choice == 7:
+        print("Thank you for using my software!")
+
+main()
