@@ -5,8 +5,63 @@
 ###########################################
 import re
 
+platform_users = {"Georgio_g":0, "Zoalfiqar":1, "Mirjam_35":2}
 
-platform_users = {}
+class Node:
+    def __init__(self, username):
+        self.username = username
+        self.ref = None
+
+    def getUsername(self):
+        return self.username
+    def getRef(self):
+        return self.ref
+     
+
+
+class UserLinkedList:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+
+    def checkIfFriendExists(self, new_friend):
+         if self.size == 0:
+              return new_friend
+         else:
+              temp = self.head
+              while not (temp == None):
+                   if temp.username == new_friend:
+                        return -99
+                   else:
+                        temp = temp.ref
+              return new_friend
+                
+
+
+    def addNewFriend(self, new_friend):
+        new_friend = self.checkIfFriendExists()
+        if new_friend == -99:
+            print("You already have this person in your friend list!")
+        else:
+            new_friend = Node(new_friend)
+            new_friend.ref = self.head
+            self.head = new_friend
+            self.size += 1
+          
+
+
+class AdjacencyList:
+     def __init__(self):
+          self.graph = []
+
+     def addNewLinkedList(self):
+          new_linked_list = UserLinkedList()
+          self.graph.append(new_linked_list)
+          
+
+
+
 
 
 # This function gets the new username from the user as an input, validates it, checks if the it already exists in the platform
@@ -44,6 +99,9 @@ def removeUserFromPlatform():
     print(platform_users)
 
 
+
+
+# This function shows all the users that are registered at the platform.
 def viewPlatformUsers():
      if len(platform_users) == 0:
           print("-----------------------------")
@@ -101,7 +159,8 @@ def main():
          removeUserFromPlatform()
 
 
-
+    if choice == 3:
+         
 
 
 
