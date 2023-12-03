@@ -5,7 +5,7 @@
 ###########################################
 import re
 
-platform_users = {"Georgio_g":0, "Zoalfiqar":1, "Mirjam_35":2}
+platform_users = {}
 
 class Node:
     def __init__(self, username):
@@ -39,7 +39,7 @@ class UserLinkedList:
                 
 
 
-    def addNewFriend(self, new_friend):
+    def addNewFriendship(self, new_friend):
         new_friend = self.checkIfFriendExists()
         if new_friend == -99:
             print("You already have this person in your friend list!")
@@ -55,9 +55,11 @@ class AdjacencyList:
      def __init__(self):
           self.graph = []
 
-     def addNewLinkedList(self):
-          new_linked_list = UserLinkedList()
+     def addNewLinkedList(self, new_linked_list):
           self.graph.append(new_linked_list)
+
+     def addNewEdge(self,index,username):
+          self.graph[index].append(UserLinkedList.addNewFriendship(username))
           
 
 
@@ -65,23 +67,7 @@ class AdjacencyList:
 
 
 
-def checkIfUserInPlatform(username_num):
-    if username_num == 1:
-        username_01 = input("Please enter the first username: ")
-        while not ((8 <= len(username_01) <= 25) is True):
-            username_01 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
-        while not (username_01 in platform_users):
-                print(">>> Error: Username was not found! please try a different one.")
-                return checkIfUserInPlatform(1)
-        return username_01
-    elif username_num == 2:
-        username_02 = input("Please enter the second username: ")
-        while not ((8 <= len(username_02) <= 25) is True):
-            username_02 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
-        while not (username_02 in platform_users):
-            print(">>> Error: Username was not found! please try a different one.")
-            return checkIfUserInPlatform(2)
-        return username_02
+
 
 
 # This function gets the new username from the user as an input, validates it, checks if the it already exists in the platform
@@ -117,6 +103,40 @@ def removeUserFromPlatform():
          if value > temp:
               platform_users[key] = value - 1
     print(platform_users)
+
+
+
+
+
+def checkIfUserInPlatform(username_num):
+    if username_num == 1:
+        username_01 = input("Please enter the first username: ")
+        while not ((8 <= len(username_01) <= 25) is True):
+            username_01 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
+        while not (username_01 in platform_users):
+                print(">>> Error: Username was not found! please try a different one.")
+                return checkIfUserInPlatform(1)
+        return username_01
+    elif username_num == 2:
+        username_02 = input("Please enter the second username: ")
+        while not ((8 <= len(username_02) <= 25) is True):
+            username_02 = input("Invalid username!\nNote: Username should be between 8 and 25 characters.\nPlease try again: ")
+        while not (username_02 in platform_users):
+            print(">>> Error: Username was not found! please try a different one.")
+            return checkIfUserInPlatform(2)
+        return username_02
+
+
+
+
+
+def getUserValue(username):
+     for key, value in platform_users.items():
+          if key == username:
+               return value
+
+
+
 
 
 
@@ -170,10 +190,15 @@ def displayMenu():
 
 def main():
     platform_linked_lists = AdjacencyList()
+
     choice = displayMenu()
 
     if choice == 1:
         username = addNewUserToPlatform()
+        new_linked_list = UserLinkedList()
+        platform_linked_lists.addNewLinkedList(new_linked_list)
+        main()
+        
 
 
     if choice == 2:
@@ -187,7 +212,11 @@ def main():
               print("You can't send a request from a username to itself!\nPlease try again!")
               user_01 = checkIfUserInPlatform(1)
               user_02 = checkIfUserInPlatform(2)
-         print(user_01, user_02)
+         user01_index = getUserValue(user_01)
+         user02_index = getUserValue(user_02)
+
+         platform_linked_lists.addNewEdge(user01_index,user_01)
+         platform_linked_lists.addNewEdge(user02_index,user_02)
 
 
 
